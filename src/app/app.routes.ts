@@ -1,24 +1,21 @@
 import { Routes } from '@angular/router';
+import { TabsPage } from './tabs/tabs.page';
+import { HomePage } from './modules/pages/home/home.page';
+import { FavoritesPage } from './modules/pages/favorites/favorites.page';
+import { CategoryPage } from './modules/pages/category/category.page';
+
+
 
 export const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
+    component: TabsPage,
+    children: [
+      { path: 'home', component: HomePage },
+      { path: 'favorites', component: FavoritesPage },
+      { path: 'category', component: CategoryPage },
+      { path: '', redirectTo: 'home', pathMatch: 'full' }
+    ]
   },
-  {
-    path: 'category',
-    loadComponent: () => import('./modules/pages/category/category.page').then( m => m.CategoryPage)
-  },
-  {
-    path: 'pokemon-details',
-    loadComponent: () => import('./modules/pages/pokemon-details/pokemon-details.page').then( m => m.PokemonDetailsPage)
-  },
-  {
-    path: 'favorites',
-    loadComponent: () => import('./modules/pages/favorites/favorites.page').then( m => m.FavoritesPage)
-  },
-  {
-    path: 'home',
-    loadComponent: () => import('./modules/pages/home/home.page').then( m => m.HomePage)
-  },
+  { path: '**', redirectTo: '' }
 ];
