@@ -1,0 +1,35 @@
+ion-header {
+  ion-toolbar {
+    --background: rgba(0, 0, 0, 0);
+  }
+
+
+  .logo-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ion-img {
+      width: 40%;
+    }
+  }
+
+  .titles {
+    padding: 0 2rem;
+  }
+
+  ion-searchbar {
+    --background: rgba(0, 0, 0, 0.04);
+    --box-shadow: none;
+    --border-radius: 6px;
+  }
+
+  .pokebol-img {
+    transform: scale(1.2, 1.2);
+    opacity: 0.2;
+    position: absolute;
+    top: -120px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  }
+}
