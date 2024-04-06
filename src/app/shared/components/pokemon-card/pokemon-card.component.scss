@@ -1,0 +1,163 @@
+
+    ion-img {
+      width: 40%;
+    }
+.pokemon-container {
+  height: calc(100vh - 230px);
+  overflow-y: auto;
+
+}
+
+
+ion-content {
+
+ 
+
+  ion-card {
+    overflow: visible;
+    height: 160px;
+    box-shadow: none;
+    border-radius: 8px;
+    margin: 26px 0;
+    position: relative;
+
+
+    ion-col {
+      ion-img {
+        bottom: 36px;
+        width: 120px;
+      }
+    }
+
+    ion-badge {
+      margin-top: 8px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    ion-card-title {
+      font-weight: 900;
+    }
+  }
+}
+
+.base-line {
+  margin-top:60px;
+}
+
+.pokemon-card {
+  position: relative;
+  border-radius: 20px;
+  padding: 20px;
+  color: white;
+  padding: 20px 20px 60px;
+  contain: none;
+  margin-top: 156px;
+
+  overflow: visible !important;
+}
+
+.pokemon-image-container {
+  position: absolute;
+  top: -72px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+
+}
+
+.pokemon-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+
+}
+
+.pokemon-image-01 {
+  height: auto;
+  max-height: 120px;
+  width: auto;
+}
+
+.pokemon-image img {
+  height: auto;
+  max-height: 120px;
+  position: absolute;
+  left: 50%;
+  top: -83px;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.pokemon-details {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+}
+
+
+
+.pokemon-number {
+  font-size: 12px;
+  font-weight: bold;
+  padding-bottom: 8px;
+  color:black;
+  opacity: 0.5;
+}
+
+.pokemon-name {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.pokemon-button {
+  width: 100px;
+  height: 15px;
+  margin-top: 10px;
+
+
+
+}
+
+.icon-details {
+  color: rgb(88, 145, 209);
+  padding-right: 4px;
+}
+
+
+
+.pokemon-types {
+  display: flex;
+}
+
+.pokemon-type {
+  border-radius: 12px;
+  padding: 5px 5px;
+  margin-right: 5px;
+  font-size: 8px;
+  text-transform: uppercase;
+}
+
+.grass {
+  margin-top: 8px;
+  background: rgb(12, 52, 14);
+  background: linear-gradient(0deg, rgba(12, 52, 14, 1) 15%, rgba(73, 165, 17, 1) 100%);
+}
+
+.poison {
+  margin-top: 8px;
+  background: rgb(49, 17, 64);
+  background: linear-gradient(0deg, rgba(49, 17, 64, 1) 15%, rgba(144, 20, 196, 1) 100%);
+}
+
+.pokemon-card.grass {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(12, 52, 14, 1) 50%, rgba(73, 165, 17, 1) 100%);
+  border-radius: 20px;
+}
+
+.pokemon-card.fire {
+  background: linear-gradient(160deg, rgba(242, 153, 74, 1) 0%, rgba(242, 201, 76, 1) 100%);
+  border-radius: 20px;
+}

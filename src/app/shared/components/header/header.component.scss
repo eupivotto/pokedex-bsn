@@ -1,8 +1,15 @@
 ion-header {
-  ion-toolbar {
-    --background: rgba(0, 0, 0, 0);
-  }
 
+  fixed-header {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    height: 150px; /* ajuste a altura para combinar com a altura do seu header */
+
+  }
 
   .logo-img {
     display: flex;
@@ -28,7 +35,7 @@ ion-header {
     transform: scale(1.2, 1.2);
     opacity: 0.2;
     position: absolute;
-    top: -120px;
+    top: -72px;
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   }
