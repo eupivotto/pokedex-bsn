@@ -1,0 +1,7 @@
+{
+  "name": "app-pokedex-bsn",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
