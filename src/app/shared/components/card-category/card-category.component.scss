@@ -10,6 +10,9 @@ ion-card {
 
   ion-card-header {
     height: 100px;
+    ion-row {
+      height: 60px;
+    }
   }
 }
 
@@ -18,7 +21,7 @@ ion-card {
   align-items: center;
   justify-content: space-between;
   height: 60px;
-  
+
 
   ion-card-title {
     font-weight: bold;

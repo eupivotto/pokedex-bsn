@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonRow, IonCol, IonGrid, IonIcon } from "@ionic/angular/standalone";
+import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonRow, IonCol, IonGrid, IonIcon, IonButton } from "@ionic/angular/standalone";
 import { addCircle, heart } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 @Component({
@@ -7,7 +7,7 @@ import { addIcons } from 'ionicons';
   templateUrl: './card-favorite.component.html',
   standalone: true,
   styleUrls: ['./card-favorite.component.scss'],
-  imports: [IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonRow, IonCol, IonGrid, IonIcon ]
+  imports: [IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonRow, IonCol, IonGrid, IonIcon, IonButton ]
 })
 export class CardFavoriteComponent  implements OnInit {
 
