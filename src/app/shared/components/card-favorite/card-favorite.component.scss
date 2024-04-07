@@ -1,0 +1,39 @@
+
+
+ion-card-subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 18px;
+
+
+}
+
+ion-icon {
+  font-size: 24px;
+}
+
+.grass {
+  color: #3f9612;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+
+.card-favorite-container {
+  height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+
+.icon-details {
+  color:var(--button-details);
+  cursor: pointer;
+}
+
+.icon-heart {
+  color:var(--ion-color-primary);
+  margin-bottom: 80px;
+  margin-left: 45px;
+}
