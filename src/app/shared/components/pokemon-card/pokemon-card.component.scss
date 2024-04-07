@@ -16,7 +16,7 @@ ion-content {
 
   ion-card {
     overflow: visible;
-    height: 160px;
+    height: 192px;
     box-shadow: none;
     border-radius: 8px;
     margin: 26px 0;
@@ -82,7 +82,7 @@ ion-content {
 
 .pokemon-image img {
   height: auto;
-  max-height: 120px;
+  max-height: 130px;
   position: absolute;
   left: 50%;
   top: -83px;
@@ -110,19 +110,33 @@ ion-content {
 .pokemon-name {
   font-size: 24px;
   font-weight: bold;
+
 }
 
-.pokemon-button {
-  width: 100px;
-  height: 15px;
-  margin-top: 10px;
+.pokemon-buttons {
+  display: flex;
+  flex-direction: column; /* Isso vai empilhá-los verticalmente */
+  align-items: flex-start; /* Alinha os botões à esquerda */
+  /* Controla o espaço entre os botões */
+}
 
-
-
+.pokemon-buttons ion-button {
+  --padding-top: 0;
+  --padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-transform: none;
 }
 
 .icon-details {
   color:var(--button-details);
+  padding-right: 4px;
+
+
+}
+
+.icon-favorite {
+  color:var(--ion-color-danger-tint);
   padding-right: 4px;
 }
 
@@ -136,6 +150,7 @@ ion-content {
   border-radius: 12px;
   padding: 5px 5px;
   margin-right: 5px;
+  margin-bottom: 10px;
   font-size: 8px;
   text-transform: uppercase;
 }

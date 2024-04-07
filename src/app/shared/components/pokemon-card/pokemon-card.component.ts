@@ -1,7 +1,7 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, OnInit } from '@angular/core';
 import { IonContent, IonImg, IonCol, IonToolbar, IonButton, IonIcon, IonRow, IonCard, IonGrid, IonSearchbar, IonCardSubtitle } from "@ionic/angular/standalone";
-import { addCircle } from 'ionicons/icons';
+import { addCircle, heart } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 @Component({
   selector: 'app-pokemon-card',
@@ -23,7 +23,7 @@ import { addIcons } from 'ionicons';
 export class PokemonCardComponent  implements OnInit {
 
   constructor() {
-    addIcons({ addCircle });
+    addIcons({ addCircle, heart });
   }
 
   ngOnInit() {}
