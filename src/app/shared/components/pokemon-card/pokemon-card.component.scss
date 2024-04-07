@@ -2,6 +2,7 @@
     ion-img {
       width: 40%;
     }
+
 .pokemon-container {
   height: calc(100vh - 230px);
   overflow-y: auto;
@@ -11,7 +12,7 @@
 
 ion-content {
 
- 
+
 
   ion-card {
     overflow: visible;
@@ -121,7 +122,7 @@ ion-content {
 }
 
 .icon-details {
-  color: rgb(88, 145, 209);
+  color:var(--button-details);
   padding-right: 4px;
 }
 
@@ -141,23 +142,17 @@ ion-content {
 
 .grass {
   margin-top: 8px;
-  background: rgb(12, 52, 14);
-  background: linear-gradient(0deg, rgba(12, 52, 14, 1) 15%, rgba(73, 165, 17, 1) 100%);
+  background: var(--gradient-grass);
 }
 
 .poison {
   margin-top: 8px;
   background: rgb(49, 17, 64);
-  background: linear-gradient(0deg, rgba(49, 17, 64, 1) 15%, rgba(144, 20, 196, 1) 100%);
+  background: var(--gradient-poison)
 }
 
 .pokemon-card.grass {
-  background: rgb(2, 0, 36);
-  background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(12, 52, 14, 1) 50%, rgba(73, 165, 17, 1) 100%);
+  background: var(--bg-gradient-grass);
   border-radius: 20px;
 }
 
-.pokemon-card.fire {
-  background: linear-gradient(160deg, rgba(242, 153, 74, 1) 0%, rgba(242, 201, 76, 1) 100%);
-  border-radius: 20px;
-}

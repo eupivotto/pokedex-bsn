@@ -1,0 +1,35 @@
+ion-card {
+  background: var(--bg-gradient-grass);
+  height: 60px;
+
+  ion-card-title {
+    color: var(--ion-color-primary-contrast);
+    flex-grow: 1;
+  }
+
+  ion-card-header {
+    height: 100px;
+  }
+}
+
+.card-title {
+  padding-top: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.card-category-container {
+  height: calc(100vh - 200px);
+  overflow-y: auto;
+
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #8c8c8c;
+    padding-left: 16px;
+  }
+}
+
+.icon-details {
+  color:var(--button-details);
+}
