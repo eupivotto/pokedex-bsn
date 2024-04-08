@@ -96,6 +96,8 @@ html {
  //gradient bckground types pokemon
   --bg-gradient-grass: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(12, 52, 14, 1) 50%, rgba(73, 165, 17, 1) 100%);
 
+
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -105,6 +107,9 @@ html {
    */
 
   body {
+
+
+
     --ion-color-primary: #428cff;
     --ion-color-primary-rgb: 66,140,255;
     --ion-color-primary-contrast: #ffffff;
@@ -175,7 +180,9 @@ html {
    */
 
   .ios body {
-    --ion-background-color: #000000;
+    
+
+    --ion-background-color: #fff;
     --ion-background-color-rgb: 0,0,0;
 
     --ion-text-color: #ffffff;
@@ -219,7 +226,7 @@ html {
    */
 
   .md body {
-    --ion-background-color: #121212;
+    --ion-background-color: #fff;
     --ion-background-color-rgb: 18,18,18;
 
     --ion-text-color: #ffffff;

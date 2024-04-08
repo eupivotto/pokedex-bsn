@@ -1,4 +1,3 @@
-
 <ion-content fullscreen="true" class="pokemon-container">
   <div>
     <ion-row class="base-line">
@@ -19,11 +18,16 @@
                   <span class="pokemon-type poison">poison</span>
                 </div>
                 <div class="pokemon-buttons">
-                  <ion-button fill="clear" size="small" color="medium" >
+                  <ion-button
+                    fill="clear"
+                    size="small"
+                    color="medium"
+                    (click)="openModal()"
+                  >
                     <ion-icon class="icon-details" name="add-circle"></ion-icon>
                     Ver detalhes
                   </ion-button>
-                  <ion-button fill="clear" size="small" color="medium"  >
+                  <ion-button fill="clear" size="small" color="medium">
                     <ion-icon class="icon-favorite" name="heart"></ion-icon>
                     Favoritar
                   </ion-button>
@@ -51,11 +55,16 @@
                   <span class="pokemon-type poison">poison</span>
                 </div>
                 <div class="pokemon-buttons">
-                  <ion-button fill="clear" size="small" color="medium" >
+                  <ion-button
+                    fill="clear"
+                    size="small"
+                    color="medium"
+                    (click)="openModal()"
+                  >
                     <ion-icon class="icon-details" name="add-circle"></ion-icon>
                     Ver detalhes
                   </ion-button>
-                  <ion-button fill="clear" size="small" color="medium"  >
+                  <ion-button fill="clear" size="small" color="medium">
                     <ion-icon class="icon-favorite" name="heart"></ion-icon>
                     Favoritar
                   </ion-button>
@@ -68,4 +77,3 @@
     </ion-row>
   </div>
 </ion-content>
-
