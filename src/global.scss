@@ -25,6 +25,15 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+/* External font */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+// set external
+font,
+html {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+
 
 
 // force center
@@ -36,3 +45,5 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+

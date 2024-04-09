@@ -1,15 +1,165 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Modal</ion-title>
+    <ion-title>Poke Detalhes</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="setClose()">Close</ion-button>
+      <ion-button (click)="setClose()">Fechar</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
+<ion-content class="ion-padding cotainer-modal">
+  <div class="pokeball-top-modal">
+    <img
+      class="pokeball-img"
+      src="../../../../../../assets/images/pokeball-type.png"
+      alt="pokeball imagem"
+    />
+  </div>
 
-    <div>
-      <img src="../../../../../../assets/images/buba-test.png" alt="">
+  <div class="pokemon-title">
+    <h1>Bulbasaur</h1>
+  </div>
+  <div class="pokemon-types">
+    <span class="pokemon-type grass">grass</span>
+    <span class="pokemon-type poison">poison</span>
+  </div>
+  <div class="img-modal-pokemon">
+    <img
+      class="pokemon-img"
+      src="../../../../../../assets/images/buba-test.png"
+      alt=""
+    />
+  </div>
+  <div class="modal-data">
+    <ion-grid class="grid-about">
+      <ion-row>
+        <ion-col>
+          <h2>81</h2>
+          <p>Weigth</p>
+        </ion-col>
+        <ion-col>
+          <h2>12</h2>
+          <p>Heiht</p>
+        </ion-col>
+        <ion-col>
+          <h2>63</h2>
+          <p>Total Moves</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div class="base-stats-title">
+      <h1>Base Stats</h1>
+    </div>
+    <div class="base-bar-stats">
+      <ion-grid>
+        <ion-row>
+          <ion-list size="2" lines="none">
+            <ion-item>
+              <ion-label>HP</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>ATK</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>DEF</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>SATK</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>SDEF</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>SPD</ion-label>
+            </ion-item>
+          </ion-list>
+
+          <ion-list class="list-value" size="2" lines="none">
+            <ion-item>
+              <ion-label>75</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>103</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>80</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>70</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>80</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>92</ion-label>
+            </ion-item>
+          </ion-list>
+
+          <ion-list  size="8" lines="none">
+            <ion-item>
+              <ion-label>
+                <ion-progress-bar type="determinate" value="0.75"
+                  ></ion-progress-bar
+                >
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-progress-bar type="determinate" value="1"
+                  ></ion-progress-bar
+                >
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-progress-bar type="determinate" value="0.36"
+                  ></ion-progress-bar
+                >
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-progress-bar type="determinate" value="0.80"
+                  ></ion-progress-bar
+                >
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-progress-bar type="determinate" value="0.70"
+                  ></ion-progress-bar
+                >
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-progress-bar type="determinate" value="0.92"
+                  ></ion-progress-bar
+                >
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-row>
+      </ion-grid>
     </div>
 
+    <div class="base-stats-title">
+      <h1>Abilities</h1>
+    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-chip color="tertiary">swarm</ion-chip>
+        </ion-col>
+        <ion-col>
+          <ion-chip color="tertiary">chlorophyll</ion-chip>
+
+        </ion-col>
+        <ion-col>
+          <ion-chip color="tertiary">overcoat</ion-chip>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+  </div>
 </ion-content>

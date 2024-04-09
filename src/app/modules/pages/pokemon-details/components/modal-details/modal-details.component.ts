@@ -8,7 +8,7 @@ import {
   IonButtons,
   IonToolbar,
   IonModal,
-} from '@ionic/angular/standalone';
+  IonRow, IonCol, IonGrid, IonProgressBar, IonList, IonItem, IonLabel, IonChip } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -16,17 +16,19 @@ import { CommonModule } from '@angular/common';
   templateUrl: './modal-details.component.html',
   standalone: true,
   styleUrls: ['./modal-details.component.scss'],
-  imports: [
+  imports: [IonChip, IonLabel, IonItem, IonList, IonProgressBar, IonGrid, IonCol, IonRow,
     IonHeader,
     IonContent,
     IonButton,
-    IonTitle,
     IonButtons,
     IonToolbar,
     IonModal,
+    IonTitle,
     CommonModule,
   ],
 })
+
+
 export class ModalDetailsComponent implements OnInit {
   isModalOpen = false;
 
