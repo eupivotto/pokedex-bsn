@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { closeCircle } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 import {
   IonHeader,
   IonContent,
@@ -8,7 +10,16 @@ import {
   IonButtons,
   IonToolbar,
   IonModal,
-  IonRow, IonCol, IonGrid, IonProgressBar, IonList, IonItem, IonLabel, IonChip } from '@ionic/angular/standalone';
+  IonRow,
+  IonCol,
+  IonGrid,
+  IonProgressBar,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonChip,
+  IonIcon,
+} from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -16,7 +27,16 @@ import { CommonModule } from '@angular/common';
   templateUrl: './modal-details.component.html',
   standalone: true,
   styleUrls: ['./modal-details.component.scss'],
-  imports: [IonChip, IonLabel, IonItem, IonList, IonProgressBar, IonGrid, IonCol, IonRow,
+  imports: [
+    IonIcon,
+    IonChip,
+    IonLabel,
+    IonItem,
+    IonList,
+    IonProgressBar,
+    IonGrid,
+    IonCol,
+    IonRow,
     IonHeader,
     IonContent,
     IonButton,
@@ -27,12 +47,12 @@ import { CommonModule } from '@angular/common';
     CommonModule,
   ],
 })
-
-
 export class ModalDetailsComponent implements OnInit {
   isModalOpen = false;
 
-  constructor(private modalController: ModalController) {}
+  constructor(private modalController: ModalController) {
+    addIcons({ closeCircle });
+  }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {}

@@ -1,7 +1,7 @@
 <ion-content fullscreen="true" class="pokemon-container">
   <div>
     <ion-row class="base-line">
-      <ion-col size="6">
+      <ion-col *ngFor="let pokemon of pokemonList?.results" size="6">
         <ion-card class="pokemon-card grass">
           <ion-grid>
             <ion-row>
@@ -12,7 +12,7 @@
             <ion-row>
               <ion-col size="12" class="pokemon-details">
                 <div class="pokemon-number">#001</div>
-                <div class="pokemon-name">Bulbasaur</div>
+                <div class="pokemon-name">{{ pokemon.name }}</div>
                 <div class="pokemon-types">
                   <span class="pokemon-type grass">grass</span>
                   <span class="pokemon-type poison">poison</span>

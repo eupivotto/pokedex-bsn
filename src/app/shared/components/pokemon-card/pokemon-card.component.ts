@@ -1,11 +1,16 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { IonContent, IonImg, IonCol, IonToolbar, IonButton, IonIcon, IonRow, IonCard, IonGrid, IonSearchbar, IonCardSubtitle, IonModal } from "@ionic/angular/standalone";
 import { addCircle, heart } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { ModalDetailsComponent } from 'src/app/modules/pages/pokemon-details/components/modal-details/modal-details.component';
 import { ModalController } from '@ionic/angular';
-import { ModalService } from 'src/app/core/services/modal.service';
+import { PokemonService } from 'src/app/core/services/pokemon.service';
+import { Observable, of } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { Pokemon, PokemonList } from '../../../models/pokemon.models'
+
+
 @Component({
   selector: 'app-pokemon-card',
   templateUrl: './pokemon-card.component.html',
@@ -22,40 +27,58 @@ import { ModalService } from 'src/app/core/services/modal.service';
             IonContent,
             IonToolbar,
             IonImg,
+            CommonModule
+
           ]
 })
+
 export class PokemonCardComponent  implements OnInit {
+getPokemonNumber(arg0: string) {
+throw new Error('Method not implemented.');
+}
 
- @Input() modal: IonModal | any;
+  data$?: Observable<Pokemon>;
+  PokemonId!: number;
+  pokemonList: PokemonList | undefined;
+  @Input() modal: IonModal | any;
 
 
-
-
-
-
-
-  constructor(private modalController: ModalController) {
-
+  constructor(private modalController: ModalController, private pokemonService: PokemonService) {
     addIcons({ addCircle, heart });
   }
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.getPokemonList();
 
+  }
+
+  getPokemonDetails() {
+    this.pokemonService.getPokemonDetails(this.PokemonId).subscribe(data => {
+      this.data$ = of(data);
+      console.log(this.data$); // Aqui os dados estarão disponíveis
+    });
+  }
   async openModal() {
     const modal = await this.modalController.create({
       component: ModalDetailsComponent,
-      componentProps: {
-        // Se necessário, você pode passar propriedades para o modal aqui
-      }
+      componentProps: {}
     });
     await modal.present();
   }
 
   closeModal() {
-    this.modalController.dismiss(); // Fecha o modal
+    this.modalController.dismiss();
   }
 
-
+  getPokemonList(): void {
+    this.pokemonService.getPokemonList()
+      .subscribe(pokemonList => {
+        this.pokemonList = pokemonList;
+        console.log(this.pokemonList);
+      });
+  }
 }
+
+
 
 
