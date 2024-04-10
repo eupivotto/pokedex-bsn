@@ -1,23 +1,32 @@
 <ion-content fullscreen="true" class="pokemon-container">
   <div>
-    <ion-row  class="base-line">
+    <ion-row class="base-line">
       <ion-col size="6" *ngFor="let pokemon of getListPokemons">
-        <ion-card class="pokemon-card grass" [style.background]="getTypeColor(pokemon?.status?.types?.type?.name)" >
+        <ion-card
+          class="pokemon-card grass"
+          [ngStyle]="{ background: getPokemonCardBackgroundColor(pokemon) }"
+        >
           <ion-grid>
             <ion-row>
               <ion-col size="12" class="pokemon-image">
-                <img [src]="pokemon?.status?.sprites?.other?.dream_world?.front_default" />
+                <img
+                  [src]="
+                    pokemon?.status?.sprites?.other?.dream_world?.front_default
+                  "
+                />
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col size="12" class="pokemon-details">
-                <div class="pokemon-number">#{{ pokemon?.status?.id}}</div>
+                <div class="pokemon-number">#{{ pokemon?.status?.id }}</div>
                 <div class="pokemon-name">{{ pokemon?.name }}</div>
                 <div class="pokemon-types">
-                  <span *ngFor="let value of pokemon?.status?.types"
-                          class="pokemon-type grass"
-                          [style.background]="getTypeColor(value.type.name)">
-                          {{value?.type?.name}}
+                  <span
+                    *ngFor="let nameType of pokemon?.status?.types"
+                    class="pokemon-type grass"
+                    [style.background]="getTypeColor(nameType.type.name)"
+                  >
+                    {{ nameType?.type?.name }}
                   </span>
                 </div>
                 <div class="pokemon-buttons">

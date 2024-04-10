@@ -8,7 +8,7 @@ import { ModalController } from '@ionic/angular';
 import { PokemonService } from 'src/app/core/services/pokemon.service';
 import { TypeColorsService } from 'src/app/core/services/type-colors.service';
 import { CommonModule } from '@angular/common';
-import { PokemonList } from '../../../models/pokemon.models'
+import { Pokemon, PokemonList } from '../../../models/pokemon.models'
 
 
 @Component({
@@ -33,6 +33,7 @@ import { PokemonList } from '../../../models/pokemon.models'
 })
 
 export class PokemonCardComponent  implements OnInit {
+
 getPokemonNumber(arg0: string) {
 throw new Error('Method not implemented.');
 }
@@ -82,8 +83,10 @@ throw new Error('Method not implemented.');
 
   }
 
+  getPokemonCardBackgroundColor(pokemon: any): string {
+    return pokemon.status?.types && pokemon.status?.types[0]?.type ? this.getTypeColor(pokemon.status?.types[0].type.name) : '';
 
-
+  }
 
 }
 
