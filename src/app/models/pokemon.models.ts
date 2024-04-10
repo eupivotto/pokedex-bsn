@@ -8,6 +8,7 @@ export interface PokemonList {
 export interface PokemonListItem {
   name: string;
   url: string;
+  id: number
 }
 
 export interface Pokemon {
@@ -24,9 +25,23 @@ export interface Pokemon {
     is_hidden: boolean;
     slot: number;
   }[];
+
+
 }
 
-
+export function createDefaultPokemon(): Pokemon {
+  return {
+    id: 0,
+    name: '',
+    base_experience: 0,
+    height: 0,
+    order: 0,
+    types: [],
+    type: '',
+    photo: '',
+    abilities: [],
+  };
+}
 
 interface PokemonDetail {
   id: number;

@@ -8,7 +8,7 @@ import { ModalController } from '@ionic/angular';
 import { PokemonService } from 'src/app/core/services/pokemon.service';
 import { Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { Pokemon, PokemonList } from '../../../models/pokemon.models'
+import { Pokemon, PokemonList, PokemonListItem } from '../../../models/pokemon.models'
 
 
 @Component({
@@ -37,10 +37,10 @@ getPokemonNumber(arg0: string) {
 throw new Error('Method not implemented.');
 }
 
-  data$?: Observable<Pokemon>;
-  PokemonId!: number;
+  public getListPokemons: any;
   pokemonList: PokemonList | undefined;
   @Input() modal: IonModal | any;
+
 
 
   constructor(private modalController: ModalController, private pokemonService: PokemonService) {
@@ -48,16 +48,17 @@ throw new Error('Method not implemented.');
   }
 
   ngOnInit(): void {
-    this.getPokemonList();
+   this.pokemonService.getPokemonList().subscribe(
+    res => {
+      this.getListPokemons = res.results;
+      console.log(this.getListPokemons);
+    }
+   )
 
   }
 
-  getPokemonDetails() {
-    this.pokemonService.getPokemonDetails(this.PokemonId).subscribe(data => {
-      this.data$ = of(data);
-      console.log(this.data$); // Aqui os dados estarão disponíveis
-    });
-  }
+
+// funcotion open and close modal
   async openModal() {
     const modal = await this.modalController.create({
       component: ModalDetailsComponent,
@@ -66,17 +67,42 @@ throw new Error('Method not implemented.');
     await modal.present();
   }
 
+
   closeModal() {
     this.modalController.dismiss();
   }
 
-  getPokemonList(): void {
-    this.pokemonService.getPokemonList()
-      .subscribe(pokemonList => {
-        this.pokemonList = pokemonList;
-        console.log(this.pokemonList);
-      });
-  }
+
+ //function get pokemon linstation
+  // getPokemonList(): void {
+  //   this.pokemonService.getPokemonList().subscribe({
+  //     next: (pokemonList: PokemonList) => {
+  //       this.pokemonList = pokemonList;
+
+  //     },
+  //     error: (error) => {
+  //       console.error('Erro ao buscar lista de Pokémon:', error);
+  //     }
+  //   });
+  // }
+
+  //function getPokemon details
+  // getPokemonDetailsById(pokemonId: number): void {
+  //   this.pokemonService.getPokemonDetails(pokemonId).subscribe({
+  //     next: (pokemonDetails: any) => {
+  //       console.log('Detalhes do Pokémon:', pokemonDetails);
+  //       // Faça o que precisar com os detalhes do Pokémon
+  //     },
+  //     error: (error) => {
+  //       console.error('Erro ao buscar detalhes do Pokémon:', error);
+  //     }
+  //   });
+  // }
+
+
+
+
+
 }
 
 

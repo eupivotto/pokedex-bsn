@@ -41,6 +41,9 @@ ion-content {
 }
 
 .base-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin-top:60px;
 }
 
@@ -52,6 +55,7 @@ ion-content {
   padding: 20px 20px 60px;
   contain: none;
   margin-top: 156px;
+
 
   overflow: visible !important;
 }
@@ -84,9 +88,10 @@ ion-content {
   max-height: 130px;
   position: absolute;
   left: 50%;
-  top: -83px;
+  top: -93px;
   transform: translateX(-50%);
   z-index: 2;
+  
 }
 
 .pokemon-details {
@@ -114,9 +119,9 @@ ion-content {
 
 .pokemon-buttons {
   display: flex;
-  flex-direction: column; /* Isso vai empilhá-los verticalmente */
-  align-items: flex-start; /* Alinha os botões à esquerda */
-  /* Controla o espaço entre os botões */
+  flex-direction: column;
+  align-items: flex-start;
+
 }
 
 .pokemon-buttons ion-button {
@@ -142,14 +147,16 @@ ion-content {
 
 
 .pokemon-types {
-  display: flex;
+  display: grid; /* Usa grid layout */
+  grid-template-columns: repeat(auto-fit, minmax(0, max-content)); /* Cria colunas automáticas */
+  gap: 5px; /* Adiciona um espaço entre os tipos */
+
 }
 
 .pokemon-type {
+  display: inline-flex;
   border-radius: 12px;
   padding: 5px 5px;
-  margin-right: 5px;
-  margin-bottom: 10px;
   font-size: 8px;
   text-transform: uppercase;
 }
