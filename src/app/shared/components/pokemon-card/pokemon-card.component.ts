@@ -6,9 +6,9 @@ import { addIcons } from 'ionicons';
 import { ModalDetailsComponent } from 'src/app/modules/pages/pokemon-details/components/modal-details/modal-details.component';
 import { ModalController } from '@ionic/angular';
 import { PokemonService } from 'src/app/core/services/pokemon.service';
-import { Observable, of } from 'rxjs';
+import { TypeColorsService } from 'src/app/core/services/type-colors.service';
 import { CommonModule } from '@angular/common';
-import { Pokemon, PokemonList, PokemonListItem } from '../../../models/pokemon.models'
+import { PokemonList } from '../../../models/pokemon.models'
 
 
 @Component({
@@ -43,7 +43,11 @@ throw new Error('Method not implemented.');
 
 
 
-  constructor(private modalController: ModalController, private pokemonService: PokemonService) {
+
+  constructor(private modalController: ModalController,
+              private pokemonService: PokemonService,
+              private typeColorsService: TypeColorsService) {
+
     addIcons({ addCircle, heart });
   }
 
@@ -73,32 +77,10 @@ throw new Error('Method not implemented.');
   }
 
 
- //function get pokemon linstation
-  // getPokemonList(): void {
-  //   this.pokemonService.getPokemonList().subscribe({
-  //     next: (pokemonList: PokemonList) => {
-  //       this.pokemonList = pokemonList;
+  getTypeColor(type: string): string {
+    return this.typeColorsService.getColorByType(type);
 
-  //     },
-  //     error: (error) => {
-  //       console.error('Erro ao buscar lista de Pokémon:', error);
-  //     }
-  //   });
-  // }
-
-  //function getPokemon details
-  // getPokemonDetailsById(pokemonId: number): void {
-  //   this.pokemonService.getPokemonDetails(pokemonId).subscribe({
-  //     next: (pokemonDetails: any) => {
-  //       console.log('Detalhes do Pokémon:', pokemonDetails);
-  //       // Faça o que precisar com os detalhes do Pokémon
-  //     },
-  //     error: (error) => {
-  //       console.error('Erro ao buscar detalhes do Pokémon:', error);
-  //     }
-  //   });
-  // }
-
+  }
 
 
 

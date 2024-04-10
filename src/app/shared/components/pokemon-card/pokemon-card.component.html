@@ -2,7 +2,7 @@
   <div>
     <ion-row  class="base-line">
       <ion-col size="6" *ngFor="let pokemon of getListPokemons">
-        <ion-card class="pokemon-card grass">
+        <ion-card class="pokemon-card grass" [style.background]="getTypeColor(pokemon?.status?.types?.type?.name)" >
           <ion-grid>
             <ion-row>
               <ion-col size="12" class="pokemon-image">
@@ -14,7 +14,11 @@
                 <div class="pokemon-number">#{{ pokemon?.status?.id}}</div>
                 <div class="pokemon-name">{{ pokemon?.name }}</div>
                 <div class="pokemon-types">
-                  <span *ngFor="let value of pokemon?.status?.types" class="pokemon-type grass">{{value?.type?.name}}</span>
+                  <span *ngFor="let value of pokemon?.status?.types"
+                          class="pokemon-type grass"
+                          [style.background]="getTypeColor(value.type.name)">
+                          {{value?.type?.name}}
+                  </span>
                 </div>
                 <div class="pokemon-buttons">
                   <ion-button

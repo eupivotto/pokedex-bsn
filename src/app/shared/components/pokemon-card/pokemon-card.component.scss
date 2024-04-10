@@ -91,7 +91,7 @@ ion-content {
   top: -93px;
   transform: translateX(-50%);
   z-index: 2;
-  
+
 }
 
 .pokemon-details {
@@ -161,19 +161,10 @@ ion-content {
   text-transform: uppercase;
 }
 
-.grass {
-  margin-top: 8px;
-  background: var(--gradient-grass);
-}
-
-.poison {
-  margin-top: 8px;
-  background: rgb(49, 17, 64);
-  background: var(--gradient-poison)
-}
 
 .pokemon-card.grass {
   background: var(--bg-gradient-grass);
   border-radius: 20px;
 }
+
 

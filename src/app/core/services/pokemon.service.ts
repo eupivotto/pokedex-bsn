@@ -19,7 +19,7 @@ export class PokemonService {
 
 
   getPokemonList(): Observable<any> {
-    const url = `${this.apiUrl}/pokemon/?limit=20`;
+    const url = `${this.apiUrl}/pokemon/?limit=50`;
     return this.http.get<any>(url).pipe(
       tap(res => res),
       tap( res => {
