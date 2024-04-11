@@ -45,6 +45,11 @@ export class TypeColorsService {
 
   }
 
+  getBackgroundColorType(type: string): string {
+    return this.getColorByType(type) || '';
+  }
 }
+
+
 
 

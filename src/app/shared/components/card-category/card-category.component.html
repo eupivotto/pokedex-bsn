@@ -2,14 +2,15 @@
 
   <div class="card-category-container">
     <h1>Tipos de Pokemons</h1>
-    <ion-card>
+    <div *ngFor="let type of types" >
+    <ion-card [ngStyle]="{ 'background':getTypeColorsCategory(type) }">
       <ion-card-header>
 
           <ion-row>
 
-            <ion-col class="card-title" size="6">
+            <ion-col  class="card-title" size="6">
 
-              <ion-card-title>Grass</ion-card-title>
+              <ion-card-title>{{ type }}</ion-card-title>
               <ion-button fill="clear" size="small">
                 <ion-icon size="large" class="icon-details" name="add-circle"></ion-icon>
               </ion-button>
@@ -23,6 +24,7 @@
 
       </ion-card-header>
     </ion-card>
+  </div>
   </div>
 
 
