@@ -40,7 +40,12 @@
                     <ion-icon class="icon-details" name="add-circle"></ion-icon>
                     Ver detalhes
                   </ion-button>
-                  <ion-button fill="clear" size="small" color="medium">
+                  <ion-button
+                    fill="clear"
+                    size="small"
+                    color="medium"
+                    (click)="favoritePokemon(pokemon)"
+                  >
                     <ion-icon class="icon-favorite" name="heart"></ion-icon>
                     Favoritar
                   </ion-button>
