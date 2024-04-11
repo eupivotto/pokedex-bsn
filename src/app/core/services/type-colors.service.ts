@@ -34,4 +34,17 @@ export class TypeColorsService {
     return this.typeToColor[type];
    }
 
+  //  getTypeColor(type: string): string {
+  //   return this.getColorByType(type);
+
+  // }
+
+  getPokemonCardBackgroundColor(pokemon: any): string {
+    return pokemon.status?.types && pokemon.status?.types[0]?.type ?
+    this.getColorByType(pokemon.status?.types[0].type.name) : '';
+
+  }
+
 }
+
+

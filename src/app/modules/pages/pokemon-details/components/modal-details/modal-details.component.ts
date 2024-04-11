@@ -21,6 +21,9 @@ import {
   IonIcon,
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { Pokemon } from 'src/app/models/pokemon.models';
+import { TypeColorsService } from 'src/app/core/services/type-colors.service';
 
 @Component({
   selector: 'app-modal-details',
@@ -49,18 +52,35 @@ import { CommonModule } from '@angular/common';
 })
 export class ModalDetailsComponent implements OnInit {
   isModalOpen = false;
+  @Input() pokemon: any;
 
-  constructor(private modalController: ModalController) {
+  constructor(private modalController: ModalController,
+              private activeRoute: ActivatedRoute,
+              public typeColorsService: TypeColorsService) {
     addIcons({ closeCircle });
   }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
+
+
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
 
   setClose() {
     this.modalController.dismiss();
+  }
+
+  getTypeColor(type: string): string {
+    return this.typeColorsService.getColorByType(type);
+
+  }
+
+  getPokemonCardBackgroundColor(pokemon: any): string {
+    return this.typeColorsService.getPokemonCardBackgroundColor(pokemon);
+
   }
 }

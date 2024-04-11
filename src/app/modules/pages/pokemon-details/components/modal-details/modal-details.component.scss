@@ -1,5 +1,10 @@
-ion-content {
-  --background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(12, 52, 14, 1) 50%, rgba(73, 165, 17, 1) 100%);
+
+.scroll-y {
+  background: #dddddd;
+}
+
+.content-main {
+  border-radius: 20px;
 }
 
 .close-button {
@@ -25,6 +30,8 @@ ion-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 20px;
+
 
   h1 {
     color: #fff;
@@ -51,7 +58,7 @@ ion-icon {
   width: 100%;
   text-align: right;
   height: 80%;
-  margin-top: -60px;
+  margin-top: -30px;
 }
 
 .grid-about {
@@ -139,6 +146,24 @@ ion-chip {
   gap: 10px;
 }
 
+.content-ability {
+  display: flex;
+
+  ion-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 358px;
+
+    ion-chip{
+      width: 112px;
+      font-size: 12px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
 .grass {
   display: flex;
   align-items: center;
@@ -147,7 +172,6 @@ ion-chip {
   height: 28px;
   font-weight: bold;
   border-radius: 10px;
-  background: var(--gradient-grass);
   color: #fff;
 }
 
@@ -160,6 +184,5 @@ ion-chip {
   font-weight: bold;
   border-radius: 10px;
   background: rgb(49, 17, 64);
-  background: var(--gradient-poison);
   color: #fff;
 }

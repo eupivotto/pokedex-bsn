@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, of } from 'rxjs';
-import { tap } from 'rxjs/operators'
+import { Observable, forkJoin, map, of } from 'rxjs';
+import { mergeMap, tap } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
-import { PokemonList, Pokemon } from '../../models/pokemon.models';
+import { PokemonList, Pokemon, PokemonListItem } from '../../models/pokemon.models';
 
 @Injectable({
   providedIn: 'root',
@@ -18,13 +18,13 @@ export class PokemonService {
 
 
 
-  getPokemonList(): Observable<any> {
-    const url = `${this.apiUrl}/pokemon/?limit=50`;
-    return this.http.get<any>(url).pipe(
+  getPokemonList(): Observable<PokemonList> {
+    const url = `${this.apiUrl}/pokemon/?limit=25`;
+    return this.http.get<PokemonList>(url).pipe(
       tap(res => res),
       tap( res => {
         res.results.map((resPokemons: any) => {
-          this.http.get<any>(resPokemons.url).pipe(
+          this.http.get<PokemonList>(resPokemons.url).pipe(
             map(res => res)
           ).subscribe( res => resPokemons.status = res)
         })
@@ -32,6 +32,10 @@ export class PokemonService {
 
     );
   }
+
+  
+
+
 
   convertPokeApiDetailToPokemon(pokeDetail: any): Observable<Pokemon> {
     return of(this.convertToPokemon(pokeDetail));

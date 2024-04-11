@@ -8,7 +8,7 @@ export interface PokemonList {
 export interface PokemonListItem {
   name: string;
   url: string;
-  id: number
+  
 }
 
 export interface Pokemon {

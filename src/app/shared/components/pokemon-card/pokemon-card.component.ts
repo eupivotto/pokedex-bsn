@@ -9,6 +9,7 @@ import { PokemonService } from 'src/app/core/services/pokemon.service';
 import { TypeColorsService } from 'src/app/core/services/type-colors.service';
 import { CommonModule } from '@angular/common';
 import { Pokemon, PokemonList } from '../../../models/pokemon.models'
+import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -27,12 +28,14 @@ import { Pokemon, PokemonList } from '../../../models/pokemon.models'
             IonContent,
             IonToolbar,
             IonImg,
-            CommonModule
+            CommonModule,
+            RouterLink
 
           ]
 })
 
 export class PokemonCardComponent  implements OnInit {
+
 
 getPokemonNumber(arg0: string) {
 throw new Error('Method not implemented.');
@@ -41,18 +44,20 @@ throw new Error('Method not implemented.');
   public getListPokemons: any;
   pokemonList: PokemonList | undefined;
   @Input() modal: IonModal | any;
+  @Input() pokemon: any;
 
 
 
 
   constructor(private modalController: ModalController,
               private pokemonService: PokemonService,
-              private typeColorsService: TypeColorsService) {
+              public typeColorsService: TypeColorsService) {
 
     addIcons({ addCircle, heart });
   }
 
   ngOnInit(): void {
+
    this.pokemonService.getPokemonList().subscribe(
     res => {
       this.getListPokemons = res.results;
@@ -63,11 +68,14 @@ throw new Error('Method not implemented.');
   }
 
 
+
+
 // funcotion open and close modal
-  async openModal() {
+  async openModal(pokemon: any) {
+    console.log(pokemon);
     const modal = await this.modalController.create({
       component: ModalDetailsComponent,
-      componentProps: {}
+      componentProps: { pokemon }
     });
     await modal.present();
   }
@@ -84,11 +92,12 @@ throw new Error('Method not implemented.');
   }
 
   getPokemonCardBackgroundColor(pokemon: any): string {
-    return pokemon.status?.types && pokemon.status?.types[0]?.type ? this.getTypeColor(pokemon.status?.types[0].type.name) : '';
+    return this.typeColorsService.getPokemonCardBackgroundColor(pokemon);
+  }
 
   }
 
-}
+
 
 
 

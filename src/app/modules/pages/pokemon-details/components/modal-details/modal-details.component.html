@@ -1,167 +1,121 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Detalhes do Pokemon</ion-title>
-    <ion-buttons  class="close-button" slot="end">
-      <ion-button  (click)="setClose()">
+    <ion-buttons class="close-button" slot="end">
+      <ion-button (click)="setClose()">
         <ion-icon slot="icon-only" name="close-circle"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding cotainer-modal">
-  <div class="pokeball-top-modal">
-    <img
-      class="pokeball-img"
-      src="../../../../../../assets/images/pokeball-type.png"
-      alt="pokeball imagem"
-    />
-  </div>
+<ion-content  class="ion-padding cotainer-modal"
+              >
 
-  <div class="pokemon-title">
-    <h1>Bulbasaur</h1>
-  </div>
-  <div class="pokemon-types">
-    <span class="pokemon-type grass">grass</span>
-    <span class="pokemon-type poison">poison</span>
-  </div>
-  <div class="img-modal-pokemon">
-    <img
-      class="pokemon-img"
-      src="../../../../../../assets/images/buba-test.png"
-      alt=""
-    />
-  </div>
-  <div class="modal-data">
-    <ion-grid class="grid-about">
-      <ion-row>
-        <ion-col>
-          <h2>81</h2>
-          <p>Weigth</p>
-        </ion-col>
-        <ion-col>
-          <h2>12</h2>
-          <p>Heiht</p>
-        </ion-col>
-        <ion-col>
-          <h2>63</h2>
-          <p>Total Moves</p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <div class="base-stats-title">
-      <h1>Base Stats</h1>
+  <div [ngStyle]="{ background: getPokemonCardBackgroundColor(pokemon) }"  class="content-main">
+    <div class="pokeball-top-modal">
+      <img
+        class="pokeball-img"
+        src="../../../../../../assets/images/pokeball-type.png"
+        alt="pokeball imagem"
+      />
     </div>
-    <div class="base-bar-stats">
-      <ion-grid>
+
+    <div  class="pokemon-title">
+      <h1>{{ pokemon.status.name }}</h1>
+    </div>
+    <div class="pokemon-types">
+      <span *ngFor="let nameType of pokemon.status.types"
+             class="pokemon-type grass"
+             [style.background]="getTypeColor(nameType.type.name)">{{nameType.type.name}}</span>
+
+    </div>
+    <div class="img-modal-pokemon">
+      <img
+        class="pokemon-img"
+        [src]="
+        pokemon?.status?.sprites?.other?.dream_world?.front_default
+      "
+        alt=""
+      />
+    </div>
+    <div class="modal-data">
+      <ion-grid class="grid-about">
         <ion-row>
-          <ion-list size="2" lines="none">
-            <ion-item>
-              <ion-label>HP</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>ATK</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>DEF</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>SATK</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>SDEF</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>SPD</ion-label>
-            </ion-item>
-          </ion-list>
-
-          <ion-list class="list-value" size="2" lines="none">
-            <ion-item>
-              <ion-label>75</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>103</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>80</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>70</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>80</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>92</ion-label>
-            </ion-item>
-          </ion-list>
-
-          <ion-list  size="8" lines="none">
-            <ion-item>
-              <ion-label>
-                <ion-progress-bar type="determinate" value="0.75"
-                  ></ion-progress-bar
-                >
-              </ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>
-                <ion-progress-bar type="determinate" value="1"
-                  ></ion-progress-bar
-                >
-              </ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>
-                <ion-progress-bar type="determinate" value="0.36"
-                  ></ion-progress-bar
-                >
-              </ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>
-                <ion-progress-bar type="determinate" value="0.80"
-                  ></ion-progress-bar
-                >
-              </ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>
-                <ion-progress-bar type="determinate" value="0.70"
-                  ></ion-progress-bar
-                >
-              </ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>
-                <ion-progress-bar type="determinate" value="0.92"
-                  ></ion-progress-bar
-                >
-              </ion-label>
-            </ion-item>
-          </ion-list>
+          <ion-col>
+            <h2>{{pokemon.status.weight}}</h2>
+            <p>Weight</p>
+          </ion-col>
+          <ion-col>
+            <h2>{{pokemon.status.height}}</h2>
+            <p>Height</p>
+          </ion-col>
+          <ion-col>
+            <h2>{{pokemon.status.moves.length}}</h2>
+            <p>Total Moves</p>
+          </ion-col>
         </ion-row>
       </ion-grid>
+      <div class="base-stats-title">
+        <h1>Base Stats</h1>
+      </div>
+      <div class="base-bar-stats">
+        <ion-grid>
+          <ion-row>
+            <ion-list size="2" lines="none">
+              <ion-item>
+                <ion-label>HP</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>ATK</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>DEF</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>SATK</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>SDEF</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>SPD</ion-label>
+              </ion-item>
+            </ion-list>
+
+            <ion-list  class="list-value" size="2" lines="none">
+              <div *ngFor="let stat of pokemon.status.stats">
+                <ion-item>
+                  <ion-label>{{stat.base_stat}}</ion-label>
+                </ion-item>
+              </div>
+              </ion-list>
+
+
+
+            <ion-list size="8" lines="none">
+              <ion-item *ngFor="let stat of pokemon.status.stats">
+                <ion-label>
+                  <ion-progress-bar
+                    type="determinate"
+                    [value]="stat.base_stat / 100"
+                  ></ion-progress-bar>
+                </ion-label>
+              </ion-item>
+
+            </ion-list>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <div class="base-stats-title">
+        <h1>Abilities</h1>
+      </div>
+      <div class="content-ability">
+          <ion-row *ngFor="let ability of pokemon.status.abilities">
+            <ion-chip color="tertiary">{{ability.ability.name}}</ion-chip>
+          </ion-row>
+      </div>
     </div>
-
-    <div class="base-stats-title">
-      <h1>Abilities</h1>
-    </div>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-chip color="tertiary">swarm</ion-chip>
-        </ion-col>
-        <ion-col>
-          <ion-chip color="tertiary">chlorophyll</ion-chip>
-
-        </ion-col>
-        <ion-col>
-          <ion-chip color="tertiary">overcoat</ion-chip>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-
   </div>
+
 </ion-content>
