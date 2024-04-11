@@ -10,6 +10,13 @@ ion-card {
 
   ion-card-header {
     height: 100px;
+
+    .category-content {
+      display: flex;
+      align-items: center;
+
+    }
+
     ion-row {
       height: 60px;
     }
@@ -17,15 +24,14 @@ ion-card {
 }
 
 .card-title {
-  display: flex;
+  flex:1;
   align-items: center;
-  justify-content: space-between;
-  height: 60px;
 
 
   ion-card-title {
     font-weight: bold;
     font-size: 30px;
+
   }
 }
 
@@ -42,13 +48,17 @@ ion-card {
 }
 
 .image-container {
-  padding-bottom: 50px;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
 
   .pokebol-img-category {
+
     width: 300px;
   }
 }
 
 .icon-details {
   color: var(--collor-blue-main);
+  background-color: none;
 }

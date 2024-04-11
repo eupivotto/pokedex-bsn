@@ -10,28 +10,27 @@ import { TypeColorsService } from 'src/app/core/services/type-colors.service';
 import { CommonModule } from '@angular/common';
 import { Pokemon, PokemonList } from '../../../models/pokemon.models'
 import { RouterLink } from '@angular/router';
+import { SearchPokemonComponent } from "../search-pokemon/search-pokemon.component";
 
 
 @Component({
-  selector: 'app-pokemon-card',
-  templateUrl: './pokemon-card.component.html',
-  standalone: true,
-  styleUrls: ['./pokemon-card.component.scss'],
-  imports: [IonGrid,
-            IonCard,
-            IonRow,
-            IonIcon,
-            IonSearchbar,
-            IonCardSubtitle,
-            IonCol,
-            IonButton,
-            IonContent,
-            IonToolbar,
-            IonImg,
-            CommonModule,
-            RouterLink
-
-          ]
+    selector: 'app-pokemon-card',
+    templateUrl: './pokemon-card.component.html',
+    standalone: true,
+    styleUrls: ['./pokemon-card.component.scss'],
+    imports: [IonGrid,
+        IonCard,
+        IonRow,
+        IonIcon,
+        IonSearchbar,
+        IonCardSubtitle,
+        IonCol,
+        IonButton,
+        IonContent,
+        IonToolbar,
+        IonImg,
+        CommonModule,
+        RouterLink, SearchPokemonComponent]
 })
 
 export class PokemonCardComponent  implements OnInit {
@@ -42,6 +41,7 @@ throw new Error('Method not implemented.');
 }
 
   public getListPokemons: any;
+  private setListPokemons: any;
   pokemonList: PokemonList | undefined;
   @Input() modal: IonModal | any;
   @Input() pokemon: any;
@@ -60,14 +60,13 @@ throw new Error('Method not implemented.');
 
    this.pokemonService.getPokemonList().subscribe(
     res => {
-      this.getListPokemons = res.results;
+      this.setListPokemons = res.results; // add set for resolve search results
+      this.getListPokemons = this.setListPokemons;
       console.log(this.getListPokemons);
     }
    )
 
   }
-
-
 
 
 // funcotion open and close modal
@@ -93,6 +92,16 @@ throw new Error('Method not implemented.');
 
   getPokemonCardBackgroundColor(pokemon: any): string {
     return this.typeColorsService.getPokemonCardBackgroundColor(pokemon);
+  }
+
+
+  getSearch(value:any) {
+    const filter = this.setListPokemons.filter( (res: any) => {
+      return !res.name.indexOf(value.toLowerCase());
+    });
+
+    this.getListPokemons = filter;
+
   }
 
   }

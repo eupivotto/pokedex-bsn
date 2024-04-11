@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, of } from 'rxjs';
-import { tap } from 'rxjs/operators'
+import { Observable, forkJoin, map, of } from 'rxjs';
+import { mergeMap, tap } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
 import { PokemonList, Pokemon} from '../../models/pokemon.models';
 
@@ -25,6 +25,8 @@ export class PokemonService {
     const urlTypes = `${this.apiType}`;
     return this.http.get<any>(urlTypes);
   }
+
+ 
 
   getPokemonList(): Observable<PokemonList> {
     const url = `${this.apiUrl}/pokemon/?limit=25`;

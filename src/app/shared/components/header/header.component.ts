@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { addIcons } from 'ionicons';
 import { optionsOutline } from 'ionicons/icons';
 import { IonHeader, IonToolbar, IonImg, IonButtons, IonButton, IonIcon, IonCardSubtitle, IonSearchbar, IonContent } from "@ionic/angular/standalone";
@@ -12,12 +12,19 @@ import { IonHeader, IonToolbar, IonImg, IonButtons, IonButton, IonIcon, IonCardS
 })
 export class HeaderComponent  implements OnInit {
 
+
+
+
   constructor() {
     addIcons({ optionsOutline });
   }
 
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {
 
   }
+
+  
+
 
 }

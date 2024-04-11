@@ -56,7 +56,7 @@ export class CardCategoryComponent implements OnInit {
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void {
     this.getAllTypes();
-    
+   
   }
 
   getAllTypes(): void {
@@ -65,6 +65,9 @@ export class CardCategoryComponent implements OnInit {
       console.log(this.types);
     });
   }
+
+
+
 
   getTypeColorsCategory(type: string): string {
     return this.typeColorsService.getBackgroundColorType(type);
