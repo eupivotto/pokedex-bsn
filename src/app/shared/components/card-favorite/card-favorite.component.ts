@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonRow, IonCol, IonGrid, IonIcon, IonButton } from "@ionic/angular/standalone";
 import { addCircle, heart, trash } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { CommonModule } from '@angular/common';
 import { FavoriteService } from 'src/app/core/services/favorite.service';
+import { TypeColorsService } from 'src/app/core/services/type-colors.service';
 @Component({
   selector: 'app-card-favorite',
   templateUrl: './card-favorite.component.html',
@@ -22,6 +23,7 @@ import { FavoriteService } from 'src/app/core/services/favorite.service';
             CommonModule ]
 })
 export class CardFavoriteComponent  implements OnInit {
+
   favoritePokemons: any[] = [];
 
 
@@ -31,8 +33,9 @@ export class CardFavoriteComponent  implements OnInit {
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {
-    this.favoritePokemons = this.favoriteService.getFavorites();
+    this.getFromFavorites();
   }
+
 
   addPokemonToFavorites(pokemon: any) {
     this.favoritePokemons.push(pokemon);
@@ -40,6 +43,9 @@ export class CardFavoriteComponent  implements OnInit {
     console.log(this.favoritePokemons);
   }
 
+  getFromFavorites() {
+    this.favoritePokemons = this.favoriteService.getFavorites();
+  }
   removeFromFavorites(pokemon: any) {
     this.favoriteService.removePokemon(pokemon);
   }

@@ -3,12 +3,14 @@ export interface PokemonList {
   next: string | null;
   previous: string | null;
   results: PokemonListItem[];
+
 }
 
 export interface PokemonListItem {
   name: string;
   url: string;
-  
+  status:[];
+
 }
 
 export interface Pokemon {

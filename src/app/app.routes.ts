@@ -16,7 +16,7 @@ export const routes: Routes = [
       { path: 'favorites', component: FavoritesPage },
       { path: 'category', component: CategoryPage },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'details/:id', component: PokemonDetailsPage },
+      { path: 'details', component: PokemonDetailsPage },
     ]
   },
   { path: '**', redirectTo: '' }

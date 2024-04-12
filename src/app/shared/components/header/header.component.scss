@@ -34,9 +34,10 @@ ion-header {
   .pokebol-img {
     transform: scale(1.2, 1.2);
     opacity: 0.2;
-    position: absolute;
+    position: fixed;
     top: -72px;
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    z-index: 3;
   }
 }

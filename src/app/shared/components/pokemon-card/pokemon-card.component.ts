@@ -21,7 +21,7 @@ import {
   IonCardSubtitle,
   IonModal,
 } from '@ionic/angular/standalone';
-import { addCircle, heart } from 'ionicons/icons';
+import { addCircle, heart, heartOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { ModalDetailsComponent } from 'src/app/modules/pages/pokemon-details/components/modal-details/modal-details.component';
 import { ModalController } from '@ionic/angular';
@@ -56,14 +56,14 @@ import { FavoriteService } from 'src/app/core/services/favorite.service';
   ],
 })
 export class PokemonCardComponent implements OnInit {
-
-
   public getListPokemons: any;
   private setListPokemons: any;
+
   pokemonList: PokemonList | undefined;
   @Input() modal: IonModal | any;
   @Input() pokemon: any;
   @Output() pokemonFavorited = new EventEmitter<any>();
+  favorited: boolean = false;
 
   constructor(
     private modalController: ModalController,
@@ -71,23 +71,15 @@ export class PokemonCardComponent implements OnInit {
     public typeColorsService: TypeColorsService,
     private favoriteService: FavoriteService
   ) {
-    addIcons({ addCircle, heart });
+    addIcons({ addCircle, heart, heartOutline });
   }
 
   ngOnInit(): void {
-    this.pokemonService.getPokemonList().subscribe((res) => {
-      this.setListPokemons = res.results; // add set for resolve search results
-      this.getListPokemons = this.setListPokemons;
-      console.log(this.getListPokemons);
-    });
-
-
-
+    this.getAllPokemons();
   }
 
   // funcotion open and close modal
   async openModal(pokemon: any) {
-    console.log(pokemon);
     const modal = await this.modalController.create({
       component: ModalDetailsComponent,
       componentProps: { pokemon },
@@ -97,6 +89,13 @@ export class PokemonCardComponent implements OnInit {
 
   closeModal() {
     this.modalController.dismiss();
+  }
+
+  getAllPokemons() {
+    this.pokemonService.getPokemonList().subscribe((res) => {
+      this.setListPokemons = res.results; // add set for resolve back search results
+      this.getListPokemons = this.setListPokemons;
+    });
   }
 
   getTypeColor(type: string): string {
@@ -118,6 +117,9 @@ export class PokemonCardComponent implements OnInit {
   favoritePokemon(pokemon: any) {
     this.favoriteService.addPokemon(pokemon);
     this.pokemonFavorited.emit(pokemon);
-    console.log(this.pokemonFavorited);
+  }
+
+  toggleFavorite() {
+    this.favorited = !this.favorited;
   }
 }

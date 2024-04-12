@@ -26,8 +26,30 @@ export class PokemonService {
     return this.http.get<any>(urlTypes);
   }
 
- 
+  //listing pokemons by type
+  getPokemonByType(type: string): Observable<any> {
+    const url = (`${this.apiUrl}?type=${type}`);
+    return this.http.get<any>(url);
+  }
 
+
+
+  getPokemonDetailsByType(url: string): Observable<any> {
+    // Faz a solicitação HTTP GET para obter a lista de Pokémon do tipo especificado
+    return this.http.get<any>(url);
+  }
+
+  getPokemonsByType(type: string): Observable<any[]> {
+    return this.getPokemonByType(type).pipe(
+      // Mapeia a resposta para extrair as URLs dos Pokémon
+      map((response: any) => response.pokemon.map((item: any) => item.pokemon.url)),
+      // Para cada URL, obtenha os detalhes do Pokémon
+      mergeMap((urls: string[]) => forkJoin(urls.map(url => this.getPokemonDetailsByType(url))))
+    );
+  }
+
+
+  //linsting pokemons
   getPokemonList(): Observable<PokemonList> {
     const url = `${this.apiUrl}/pokemon/?limit=25`;
     return this.http.get<PokemonList>(url).pipe(
@@ -43,7 +65,20 @@ export class PokemonService {
     );
   }
 
+gePokemonListByTypes(): Observable<PokemonList> {
+  const url = `${this.apiType}`;
+  return this.http.get<PokemonList>(url).pipe(
+    tap(res => res),
+    tap( res => {
+      res.results.map((resPokemons: any) => {
+        this.http.get<PokemonList>(resPokemons.url).pipe(
+          map(res => res)
+        ).subscribe( res => resPokemons.status = res)
+      })
+    })
 
+  )
+}
 
 
 

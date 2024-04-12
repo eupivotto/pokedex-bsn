@@ -26,10 +26,12 @@ export class FavoriteService {
 
   // Remover um pokémon dos favoritos
   removePokemon(pokemon: any) {
-    const index = this.favoritePokemons.findIndex(p => p.id === pokemon.id);
-    if (index !== -1) {
-      this.favoritePokemons.splice(index, 1);
-      this.saveFavorites();
+    if (pokemon) {
+      const index = this.favoritePokemons.findIndex(p => p.id === pokemon.id);
+      if (index !== -1) {
+        this.favoritePokemons.splice(index, 1);
+        this.saveFavorites();
+      }
     }
   }
 

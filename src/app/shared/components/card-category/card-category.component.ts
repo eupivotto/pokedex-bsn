@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import {
   IonCard,
   IonCardTitle,
@@ -37,6 +38,7 @@ import { TypeColorsService } from 'src/app/core/services/type-colors.service';
     IonCardTitle,
     IonCardSubtitle,
     CommonModule,
+    RouterLink
   ],
 })
 export class CardCategoryComponent implements OnInit {
@@ -45,10 +47,12 @@ export class CardCategoryComponent implements OnInit {
   types: string[] = [];
   backgroundColor: any;
   @Input() type: any;
+  public getListTypes: any;
 
   constructor(
     private pokemonService: PokemonService,
-    public typeColorsService: TypeColorsService
+    public typeColorsService: TypeColorsService,
+    private router: Router
   ) {
     addIcons({ addCircle });
   }
@@ -56,20 +60,38 @@ export class CardCategoryComponent implements OnInit {
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void {
     this.getAllTypes();
-   
+
+    this.pokemonService.gePokemonListByTypes().subscribe((res) => {
+      this.getListTypes = res.results;
+      console.log(this.getListTypes);
+    });
+
   }
 
   getAllTypes(): void {
     this.pokemonService.getPokemonTypes().subscribe((res) => {
       this.types = res.results.map((type: any) => type.name);
-      console.log(this.types);
+
+    });
+  }
+
+
+  getTypeColorsCategory(type: string): string {
+    return this.typeColorsService.getBackgroundColorType(type);
+  }
+
+  openPokemonListByType(type: string) {
+    this.pokemonService.gePokemonListByTypes().subscribe((data) => {
+      this.getListTypes = data.results.map((type) => type)
+      // Navegar para a página de Pokémon e passar a lista de Pokémon do tipo clicado como parâmetro
+      this.router.navigate(['/details'], { state: { pokemons: data } });
+      console.log(data);
+
+
     });
   }
 
 
 
 
-  getTypeColorsCategory(type: string): string {
-    return this.typeColorsService.getBackgroundColorType(type);
-  }
 }
