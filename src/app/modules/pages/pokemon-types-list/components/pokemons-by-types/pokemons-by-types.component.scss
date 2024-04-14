@@ -26,6 +26,13 @@ ion-label {
 
 }
 
+.close-button {
+  ion-icon {
+    color:var(--collor-blue-main);
+  }
+  
+  }
+
 .favorite-button {
   background: var(--color-blue-main);
 }

@@ -9,16 +9,15 @@ interface Pokemon {
 }
 
 import { Component, Input, OnInit } from '@angular/core';
+import { closeCircle } from 'ionicons/icons';
 import { CommonModule, NgFor } from '@angular/common';
 import { PokemonService } from 'src/app/core/services/pokemon.service';
-import {
-  ModalController,
-  IonicModule,
-  InfiniteScrollCustomEvent,
+import { ModalController, IonicModule, InfiniteScrollCustomEvent,
 } from '@ionic/angular';
 import { TypeColorsService } from 'src/app/core/services/type-colors.service';
 import { ModalDetailsComponent } from '../../../pokemon-details/components/modal-details/modal-details.component';
 import { FavoriteService } from 'src/app/core/services/favorite.service';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-pokemons-by-types',
@@ -38,7 +37,9 @@ export class PokemonsByTypesComponent implements OnInit {
     private ModalController: ModalController,
     public typeColorsService: TypeColorsService,
     public favoriteService: FavoriteService
-  ) {}
+  ) {
+    addIcons({ closeCircle });
+  }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {

@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>PokeList de {{ type.name }}</ion-title>
-    <ion-buttons (click)="setClose()" slot="end">
-      <ion-button>
-        <ion-icon name="close">Fechar</ion-icon>
+    <ion-buttons class="close-button"  slot="end">
+      <ion-button (click)="setClose()">
+        <ion-icon name="close-circle">Fechar</ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

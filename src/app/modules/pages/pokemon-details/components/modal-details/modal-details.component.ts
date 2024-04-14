@@ -58,6 +58,7 @@ export class ModalDetailsComponent implements OnInit {
   constructor(private modalController: ModalController,
               private activeRoute: ActivatedRoute,
               public typeColorsService: TypeColorsService) {
+
     addIcons({ closeCircle });
   }
 

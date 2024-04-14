@@ -17,6 +17,7 @@
                 />
               </ion-col>
             </ion-row>
+
             <ion-row>
               <ion-col size="12" class="pokemon-details">
                 <div class="pokemon-number">#{{ pokemon?.status?.id }}</div>
@@ -30,6 +31,7 @@
                     {{ nameType?.type?.name }}
                   </span>
                 </div>
+
                 <div class="pokemon-buttons">
                   <ion-button
                     fill="clear"
@@ -40,16 +42,29 @@
                     <ion-icon class="icon-details" name="add-circle"></ion-icon>
                     Ver detalhes
                   </ion-button>
+
                   <ion-button
+                    id="open-toast"
                     fill="clear"
-                    size="small"
                     color="medium"
+                    size="small"
+                    expand="block"
+                    (click)="presentToast('bottom')"
                     (click)="favoritePokemon(pokemon)"
                   >
-                    <ion-icon (click)="toggleFavorite()"  *ngIf="!favorited" class="icon-favorite" name="heart-outline"></ion-icon>
-                    <ion-icon (click)="toggleFavorite()"  *ngIf="favorited" class="icon-favorite" name="heart"></ion-icon>
+                    <ion-icon
+                     id="open-toast"
+                      (click)="toggleFavorite()"
+                      class="icon-favorite"
+                      name="heart"
+                    ></ion-icon>
                     Favoritar
                   </ion-button>
+                  <ion-toast
+                    trigger="open-toast"
+                    [duration]="3000"
+                    class="custom-toast"
+                  ></ion-toast>
                 </div>
               </ion-col>
             </ion-row>

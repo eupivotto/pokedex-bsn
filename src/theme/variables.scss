@@ -195,6 +195,14 @@
     }
   }
 
+  ion-toast.custom-toast {
+    --background: #70a2d2;
+    --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+    --color: #ffffff;
+  }
+
+
+
   //butons pokemon
   --collor-blue-main: rgb(88, 145, 209);
 
