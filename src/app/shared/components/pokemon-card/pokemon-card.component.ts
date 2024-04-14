@@ -26,11 +26,13 @@ import { addIcons } from 'ionicons';
 import { ModalDetailsComponent } from 'src/app/modules/pages/pokemon-details/components/modal-details/modal-details.component';
 import { ModalController } from '@ionic/angular';
 import { PokemonService } from 'src/app/core/services/pokemon.service';
-import { TypeColorsService } from 'src/app/core/services/type-colors.service';
+
 import { CommonModule } from '@angular/common';
 import { Pokemon, IPokemonList } from '../../../models/pokemon.models';
 import { RouterLink } from '@angular/router';
 import { SearchPokemonComponent } from '../search-pokemon/search-pokemon.component';
+
+import { TypeColorsService } from 'src/app/core/services/type-colors.service';
 import { FavoriteService } from 'src/app/core/services/favorite.service';
 
 @Component({
