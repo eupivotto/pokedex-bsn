@@ -28,7 +28,7 @@ import { ModalController } from '@ionic/angular';
 import { PokemonService } from 'src/app/core/services/pokemon.service';
 import { TypeColorsService } from 'src/app/core/services/type-colors.service';
 import { CommonModule } from '@angular/common';
-import { Pokemon, PokemonList } from '../../../models/pokemon.models';
+import { Pokemon, IPokemonList } from '../../../models/pokemon.models';
 import { RouterLink } from '@angular/router';
 import { SearchPokemonComponent } from '../search-pokemon/search-pokemon.component';
 import { FavoriteService } from 'src/app/core/services/favorite.service';
@@ -59,7 +59,7 @@ export class PokemonCardComponent implements OnInit {
 
   private setListPokemons: any;
   @Input() getListPokemons : any;
-  pokemonList: PokemonList | undefined;
+  pokemonList: IPokemonList | undefined;
   @Input() modal: IonModal | any;
   @Input() pokemon: any;
   @Output() pokemonFavorited = new EventEmitter<any>();
@@ -69,17 +69,22 @@ export class PokemonCardComponent implements OnInit {
     private modalController: ModalController,
     private pokemonService: PokemonService,
     public typeColorsService: TypeColorsService,
-    private favoriteService: FavoriteService
+    public favoriteService: FavoriteService
   ) {
     addIcons({ addCircle, heart, heartOutline });
   }
 
   ngOnInit(): void {
     this.getAllPokemons();
+    this.pokemonService.getPokemonByType(this.pokemon);
+    console.log(this.pokemon)
+
 
   }
 
-  // funcotion open and close modal
+
+
+  // function open and close modal
   async openModal(pokemon: any) {
     const modal = await this.modalController.create({
       component: ModalDetailsComponent,
@@ -89,11 +94,13 @@ export class PokemonCardComponent implements OnInit {
 
   }
 
+  //Close modal
   closeModal() {
     this.modalController.dismiss();
 
   }
 
+  //get all pokemon list
   getAllPokemons() {
     this.pokemonService.getPokemonList().subscribe((res) => {
       this.setListPokemons = res.results; // add set to resolve back search results
@@ -102,14 +109,17 @@ export class PokemonCardComponent implements OnInit {
     });
   }
 
+  //change type color pokemon style
   getTypeColor(type: string): string {
     return this.typeColorsService.getColorByType(type);
   }
 
+  //Change type color background style
   getPokemonCardBackgroundColor(pokemon: any): string {
     return this.typeColorsService.getPokemonCardBackgroundColor(pokemon);
   }
 
+  //get pokemon search function
   getSearch(value: any) {
       const filter = this.setListPokemons.filter((res: any) => {
       return !res.name.indexOf(value.toLowerCase());
@@ -118,11 +128,13 @@ export class PokemonCardComponent implements OnInit {
     this.getListPokemons = filter;
   }
 
+  //favorite pokemon function
   favoritePokemon(pokemon: any) {
     this.favoriteService.addPokemon(pokemon);
     this.pokemonFavorited.emit(pokemon);
   }
 
+  // Toggle function implements
   toggleFavorite() {
     this.favorited = !this.favorited;
   }

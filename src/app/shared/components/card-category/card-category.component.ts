@@ -1,5 +1,12 @@
-import { Component, Input, OnDestroy, OnInit, EventEmitter, Output } from '@angular/core';
-import {  Router, RouterLink } from '@angular/router';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  EventEmitter,
+  Output,
+} from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 import {
   IonCard,
@@ -20,7 +27,7 @@ import { PokemonService } from 'src/app/core/services/pokemon.service';
 import { CommonModule } from '@angular/common';
 import { TypeColorsService } from 'src/app/core/services/type-colors.service';
 import { ModalController } from '@ionic/angular';
-import {  PokemonList } from '../../../models/pokemon.models';
+import { IPokemonList } from '../../../models/pokemon.models';
 import { PokemonsByTypesComponent } from 'src/app/modules/pages/pokemon-types-list/components/pokemons-by-types/pokemons-by-types.component';
 
 @Component({
@@ -48,7 +55,7 @@ import { PokemonsByTypesComponent } from 'src/app/modules/pages/pokemon-types-li
 export class CardCategoryComponent implements OnInit, OnDestroy {
   public getListPokemons: any;
   public getListTypes: any;
-  
+
   @Output() public emitData: EventEmitter<string> = new EventEmitter();
 
   @Input() type: any;
@@ -69,19 +76,17 @@ export class CardCategoryComponent implements OnInit, OnDestroy {
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void {
     this.getAllTypes();
-
-
   }
 
+  
   async openModal(type: any) {
     // Abra o modal passando o tipo selecionado
     const modal = await this.modalController.create({
       component: PokemonsByTypesComponent,
-      componentProps: { type }
+      componentProps: { type },
     });
     await modal.present();
   }
-
 
   closeModal() {
     this.modalController.dismiss();
@@ -90,28 +95,16 @@ export class CardCategoryComponent implements OnInit, OnDestroy {
   getAllTypes(): void {
     this.pokemonService.getPokemonListByTypes().subscribe((res) => {
       this.getListTypes = res.results.map((type: any) => type);
-      console.log('lista do tpes',this.getListTypes);
+      console.log('lista do tpes', this.getListTypes);
     });
   }
 
-
-
-
   ngOnDestroy() {
-    // Limpe a inscrição para evitar vazamentos de memória
+    // Cleaning subscribe to memory leaks
     this.subscription.unsubscribe();
   }
-
-
 
   getTypeColorsCategory(type: string): string {
     return this.typeColorsService.getBackgroundColorType(type);
   }
-
-
-
-
-
-
-
 }

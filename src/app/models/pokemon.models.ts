@@ -1,4 +1,4 @@
-export interface PokemonList {
+export interface IPokemonList {
   count: number;
   next: string | null;
   previous: string | null;
@@ -19,10 +19,8 @@ export interface PokemonResponse {
   url: string;
 }
 
-export interface PokemonTypeResponse {
-  name: string;
-}
-export interface PokemonTypeResponse {
+
+export interface IPokemonTypeResponse {
   // ... outras propriedades da resposta
   pokemon: {
     pokemon: {

@@ -2,10 +2,23 @@
   background: #dddddd;
 }
 
+ion-title {
+  color:var(--ion-color-medium-shade);
+}
 
 ion-card-subtitle {
   color: #000;
 }
 
+.favorite-button {
+  background:var(--color-blue-main)
+}
 
+
+.title-poke-name {
+  font-weight: bold;
+  font-size: 20px;
+
+
+}
 

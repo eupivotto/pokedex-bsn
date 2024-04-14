@@ -18,13 +18,13 @@ export class FavoriteService {
   }
 
 
-  // Adicionar um pokémon aos favoritos
+  // Add favorites Pokemons
   addPokemon(pokemon: any) {
     this.favoritePokemons.push(pokemon);
     this.saveFavorites();
   }
 
-  // Remover um pokémon dos favoritos
+  // Remova a Pokemon from the favorites
   removePokemon(pokemon: any) {
     if (pokemon) {
       const index = this.favoritePokemons.findIndex(p => p.id === pokemon.id);
@@ -35,12 +35,12 @@ export class FavoriteService {
     }
   }
 
-  // Recuperar todos os pokémons favoritos
+  // Get favorites for the favorites
   getFavorites(): any[] {
     return this.favoritePokemons;
   }
 
-  // Salvar os favoritos no armazenamento local
+  // Save a favorites for the local storage
   private saveFavorites() {
     localStorage.setItem('favoritePokemons', JSON.stringify(this.favoritePokemons));
   }

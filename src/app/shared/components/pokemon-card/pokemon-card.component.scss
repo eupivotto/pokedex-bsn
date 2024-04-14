@@ -1,26 +1,19 @@
-
-    ion-img {
-      width: 40%;
-    }
+ion-img {
+  width: 40%;
+}
 
 .pokemon-container {
   height: calc(100vh - 230px);
   overflow-y: auto;
-
 }
 
-
 ion-content {
-
-
-
   ion-card {
     overflow: visible;
     height: 192px;
     border-radius: 8px;
     margin: 26px 0;
     position: relative;
-
 
     ion-col {
       ion-img {
@@ -44,7 +37,7 @@ ion-content {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top:60px;
+  margin-top: 60px;
 }
 
 .pokemon-card {
@@ -56,7 +49,6 @@ ion-content {
   contain: none;
   margin-top: 156px;
 
-
   overflow: visible !important;
 }
 
@@ -66,7 +58,6 @@ ion-content {
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-
 }
 
 .pokemon-image {
@@ -74,7 +65,6 @@ ion-content {
   justify-content: center;
   align-items: center;
   position: absolute;
-
 }
 
 .pokemon-image-01 {
@@ -88,13 +78,10 @@ ion-content {
   max-height: 130px;
   position: absolute;
   left: 50%;
-  top: -93px;
+  top: -100px;
   transform: translateX(-50%);
   z-index: 2;
-
 }
-
-
 
 .pokemon-details {
   position: absolute;
@@ -103,20 +90,18 @@ ion-content {
   right: 20px;
 }
 
-
-
 .pokemon-number {
   font-size: 12px;
   font-weight: bold;
   padding-bottom: 8px;
-  color:black;
+  color: black;
   opacity: 0.5;
 }
 
 .pokemon-name {
   font-size: 24px;
   font-weight: bold;
-
+  margin-top: 10px;
 }
 
 .pokemon-buttons {
@@ -124,49 +109,41 @@ ion-content {
   flex-direction: column;
   align-items: flex-start;
 
-}
-
-.pokemon-buttons ion-button {
-  --padding-top: 0;
+  ion-button {
+    --padding-top: 0;
   --padding-bottom: 0;
   margin-top: 0;
   margin-bottom: 0;
   text-transform: none;
+  }
 }
 
+
+
 .icon-details {
-  color:var(--collor-blue-main);
+  color: var(--collor-blue-main);
   padding-right: 4px;
-
-
 }
 
 .icon-favorite {
-  color:var(--ion-color-danger-tint);
+  color: var(--ion-color-danger-tint);
   padding-right: 4px;
 }
 
-
-
 .pokemon-types {
-  display: grid; /* Usa grid layout */
-  grid-template-columns: repeat(auto-fit, minmax(0, max-content)); /* Cria colunas automáticas */
-  gap: 5px; /* Adiciona um espaço entre os tipos */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, max-content)); // Create Autmaic collum
+  padding: 5px 0px;
+
+  .pokemon-type {
+    display: inline-flex;
+    border-radius: 12px;
+    padding: 5px 5px;
+    font-size: 8px;
+    text-transform: uppercase;
+  }
 
 }
 
-.pokemon-type {
-  display: inline-flex;
-  border-radius: 12px;
-  padding: 5px 5px;
-  font-size: 8px;
-  text-transform: uppercase;
-}
-
-
-.pokemon-card.grass {
-  background: var(--bg-gradient-grass);
-  border-radius: 20px;
-}
 
 

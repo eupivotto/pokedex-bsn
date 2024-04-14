@@ -11,7 +11,7 @@ export class ModalService {
 
   constructor() { }
 
-
+ //Open Modal Subject
   openModal(pokemon: any) {
     this.openModalSubject.next(pokemon);
   }

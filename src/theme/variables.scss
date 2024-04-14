@@ -85,6 +85,7 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 
+  //anumation pulse
   .pulse {
     -webkit-animation-name: pulse;
     animation-name: pulse;
@@ -122,6 +123,7 @@
     }
   }
 
+  //animation bounce
   .bounce {
     -webkit-animation-name: bounce;
     animation-name: bounce;
@@ -195,6 +197,14 @@
 
   //butons pokemon
   --collor-blue-main: rgb(88, 145, 209);
+
+  // shadow utils
+
+  .shadow-utils {
+    -webkit-box-shadow: -1px 10px 33px -12px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 10px 33px -12px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 10px 33px -12px rgba(0, 0, 0, 0.75);
+  }
 
   //gradient types pokemon
   --gradient-grass: linear-gradient(0deg, rgba(12, 52, 14, 1) 15%, rgba(73, 165, 17, 1) 100%);

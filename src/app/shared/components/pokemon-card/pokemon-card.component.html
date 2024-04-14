@@ -4,7 +4,7 @@
     <ion-row class="base-line">
       <ion-col size="6" *ngFor="let pokemon of getListPokemons">
         <ion-card
-          class="pokemon-card"
+          class="pokemon-card shadow-utils"
           [ngStyle]="{ background: getPokemonCardBackgroundColor(pokemon) }"
         >
           <ion-grid>

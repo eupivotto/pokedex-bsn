@@ -27,7 +27,7 @@ export class CardFavoriteComponent  implements OnInit {
   favoritePokemons: any[] = [];
 
 
-  constructor(private favoriteService: FavoriteService) {
+  constructor(public favoriteService: FavoriteService) {
     addIcons({heart, addCircle, trash});
   }
 
