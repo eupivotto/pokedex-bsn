@@ -9,10 +9,28 @@ export interface PokemonList {
 export interface PokemonListItem {
   name: string;
   url: string;
-  status:[];
+  type: [];
+
+
 
 }
+export interface PokemonResponse {
+  name: string;
+  url: string;
+}
 
+export interface PokemonTypeResponse {
+  name: string;
+}
+export interface PokemonTypeResponse {
+  // ... outras propriedades da resposta
+  pokemon: {
+    pokemon: {
+      name: string;
+      url: string;
+    };
+  }[];
+}
 export interface Pokemon {
   id: number;
   name: string;
@@ -31,19 +49,7 @@ export interface Pokemon {
 
 }
 
-export function createDefaultPokemon(): Pokemon {
-  return {
-    id: 0,
-    name: '',
-    base_experience: 0,
-    height: 0,
-    order: 0,
-    types: [],
-    type: '',
-    photo: '',
-    abilities: [],
-  };
-}
+
 
 interface PokemonDetail {
   id: number;

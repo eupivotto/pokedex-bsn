@@ -53,6 +53,7 @@ import { TypeColorsService } from 'src/app/core/services/type-colors.service';
 export class ModalDetailsComponent implements OnInit {
   isModalOpen = false;
   @Input() pokemon: any;
+  @Input() statusData: any;
 
   constructor(private modalController: ModalController,
               private activeRoute: ActivatedRoute,

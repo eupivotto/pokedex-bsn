@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>PokeList de {{ type.name }}</ion-title>
+    <ion-buttons (click)="setClose()" slot="end">
+      <ion-button>
+        <ion-icon name="close">Fechar</ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list [ngStyle]="{ background: getTypeColor(type?.name) }">
+    <ion-item *ngFor="let item of type?.status?.pokemon; let index">
+
+      <ion-label>{{ item?.pokemon?.name }}</ion-label>
+      <ion-label>{{ item?.pokemon?.id }}</ion-label>
+
+
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

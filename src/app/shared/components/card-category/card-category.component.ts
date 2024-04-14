@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, Input, OnDestroy, OnInit, EventEmitter, Output } from '@angular/core';
+import {  Router, RouterLink } from '@angular/router';
+
 import {
   IonCard,
   IonCardTitle,
@@ -18,6 +19,9 @@ import { addIcons } from 'ionicons';
 import { PokemonService } from 'src/app/core/services/pokemon.service';
 import { CommonModule } from '@angular/common';
 import { TypeColorsService } from 'src/app/core/services/type-colors.service';
+import { ModalController } from '@ionic/angular';
+import {  PokemonList } from '../../../models/pokemon.models';
+import { PokemonsByTypesComponent } from 'src/app/modules/pages/pokemon-types-list/components/pokemons-by-types/pokemons-by-types.component';
 
 @Component({
   selector: 'app-card-category',
@@ -38,20 +42,25 @@ import { TypeColorsService } from 'src/app/core/services/type-colors.service';
     IonCardTitle,
     IonCardSubtitle,
     CommonModule,
-    RouterLink
+    RouterLink,
   ],
 })
-export class CardCategoryComponent implements OnInit {
+export class CardCategoryComponent implements OnInit, OnDestroy {
   public getListPokemons: any;
-  @Input() pokemon: any;
-  types: string[] = [];
-  backgroundColor: any;
-  @Input() type: any;
   public getListTypes: any;
+  
+  @Output() public emitData: EventEmitter<string> = new EventEmitter();
+
+  @Input() type: any;
+  @Input() pokemon: any;
+
+  pokemonTypes: any[] = [];
+  subscription: any;
 
   constructor(
     private pokemonService: PokemonService,
     public typeColorsService: TypeColorsService,
+    private modalController: ModalController,
     private router: Router
   ) {
     addIcons({ addCircle });
@@ -61,35 +70,46 @@ export class CardCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.getAllTypes();
 
-    this.pokemonService.gePokemonListByTypes().subscribe((res) => {
-      this.getListTypes = res.results;
-      console.log(this.getListTypes);
-    });
 
+  }
+
+  async openModal(type: any) {
+    // Abra o modal passando o tipo selecionado
+    const modal = await this.modalController.create({
+      component: PokemonsByTypesComponent,
+      componentProps: { type }
+    });
+    await modal.present();
+  }
+
+
+  closeModal() {
+    this.modalController.dismiss();
   }
 
   getAllTypes(): void {
-    this.pokemonService.getPokemonTypes().subscribe((res) => {
-      this.types = res.results.map((type: any) => type.name);
-
+    this.pokemonService.getPokemonListByTypes().subscribe((res) => {
+      this.getListTypes = res.results.map((type: any) => type);
+      console.log('lista do tpes',this.getListTypes);
     });
   }
+
+
+
+
+  ngOnDestroy() {
+    // Limpe a inscrição para evitar vazamentos de memória
+    this.subscription.unsubscribe();
+  }
+
 
 
   getTypeColorsCategory(type: string): string {
     return this.typeColorsService.getBackgroundColorType(type);
   }
 
-  openPokemonListByType(type: string) {
-    this.pokemonService.gePokemonListByTypes().subscribe((data) => {
-      this.getListTypes = data.results.map((type) => type)
-      // Navegar para a página de Pokémon e passar a lista de Pokémon do tipo clicado como parâmetro
-      this.router.navigate(['/details'], { state: { pokemons: data } });
-      console.log(data);
 
 
-    });
-  }
 
 
 

@@ -56,9 +56,9 @@ import { FavoriteService } from 'src/app/core/services/favorite.service';
   ],
 })
 export class PokemonCardComponent implements OnInit {
-  public getListPokemons: any;
-  private setListPokemons: any;
 
+  private setListPokemons: any;
+  @Input() getListPokemons : any;
   pokemonList: PokemonList | undefined;
   @Input() modal: IonModal | any;
   @Input() pokemon: any;
@@ -76,6 +76,7 @@ export class PokemonCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllPokemons();
+
   }
 
   // funcotion open and close modal
@@ -85,16 +86,19 @@ export class PokemonCardComponent implements OnInit {
       componentProps: { pokemon },
     });
     await modal.present();
+
   }
 
   closeModal() {
     this.modalController.dismiss();
+
   }
 
   getAllPokemons() {
     this.pokemonService.getPokemonList().subscribe((res) => {
-      this.setListPokemons = res.results; // add set for resolve back search results
+      this.setListPokemons = res.results; // add set to resolve back search results
       this.getListPokemons = this.setListPokemons;
+      console.log(this.setListPokemons);
     });
   }
 
@@ -107,7 +111,7 @@ export class PokemonCardComponent implements OnInit {
   }
 
   getSearch(value: any) {
-    const filter = this.setListPokemons.filter((res: any) => {
+      const filter = this.setListPokemons.filter((res: any) => {
       return !res.name.indexOf(value.toLowerCase());
     });
 

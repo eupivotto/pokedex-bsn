@@ -11,7 +11,7 @@ export class TypeColorsService {
     fire: 'var(--gradient-fire)',
     water: 'var(--gradient-water)',
     poison: 'var(--gradient-poison)',
-    eletric: 'var(--gradient-eletric)',
+    electric: 'var(--gradient-electric)',
     ground: 'var(--gradient-ground)',
     psychic: 'var(--gradient-psychic)',
     ice: 'var(--gradient-ice)',
@@ -24,6 +24,7 @@ export class TypeColorsService {
     rock: 'var(--gradient-rock)',
     steel: 'var(--gradient-steel)',
     ghost: 'var(--gradient-ghost)'
+    
 
 
   };

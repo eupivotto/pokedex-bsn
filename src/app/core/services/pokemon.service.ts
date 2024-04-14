@@ -1,25 +1,48 @@
+interface IPokemonTypeResponse {
+  results: Array<{
+    url: string;
+    // ...outros campos
+  }>;
+}
+interface PokemonTypeResponse {
+  // ... outras propriedades da resposta
+  pokemon: {
+    pokemon: {
+      name: string;
+      url: string;
+    };
+  }[];
+}
+interface PokemonDetail {
+  types: any;
+  stats: any;
+  pokemon: {
+    name: string;
+    id: number;
+  };
+
+  // Adicione mais propriedades conforme necessário
+}
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, map, of } from 'rxjs';
-import { mergeMap, tap } from 'rxjs/operators'
+import { catchError, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { PokemonList, Pokemon} from '../../models/pokemon.models';
+import {
+  PokemonList,
+  Pokemon,
+  PokemonListItem,
+} from '../../models/pokemon.models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
-
   private apiUrl = environment.apiUrl;
   private apiType = environment.apiType;
 
-
-
-
-
-
   constructor(private http: HttpClient) {}
-
 
   getPokemonTypes(): Observable<any> {
     const urlTypes = `${this.apiType}`;
@@ -27,60 +50,60 @@ export class PokemonService {
   }
 
   //listing pokemons by type
-  getPokemonByType(type: string): Observable<any> {
-    const url = (`${this.apiUrl}?type=${type}`);
-    return this.http.get<any>(url);
+  getPokemonByType(
+    typeName: string
+  ): Observable<{ name: string; url: string }[]> {
+    const url = `${this.apiType}${typeName}`;
+
+    return this.http
+      .get<PokemonTypeResponse>(url)
+      .pipe(
+        map((response) =>
+          response.pokemon.map((pokemon) => ({
+            name: pokemon.pokemon.name,
+            url: pokemon.pokemon.url,
+          }))
+        )
+      );
   }
 
 
 
-  getPokemonDetailsByType(url: string): Observable<any> {
-    // Faz a solicitação HTTP GET para obter a lista de Pokémon do tipo especificado
-    return this.http.get<any>(url);
-  }
-
-  getPokemonsByType(type: string): Observable<any[]> {
-    return this.getPokemonByType(type).pipe(
-      // Mapeia a resposta para extrair as URLs dos Pokémon
-      map((response: any) => response.pokemon.map((item: any) => item.pokemon.url)),
-      // Para cada URL, obtenha os detalhes do Pokémon
-      mergeMap((urls: string[]) => forkJoin(urls.map(url => this.getPokemonDetailsByType(url))))
-    );
-  }
-
-
-  //linsting pokemons
   getPokemonList(): Observable<PokemonList> {
     const url = `${this.apiUrl}/pokemon/?limit=25`;
     return this.http.get<PokemonList>(url).pipe(
-      tap(res => res),
-      tap( res => {
+      tap((res) => res),
+      tap((res) => {
         res.results.map((resPokemons: any) => {
-          this.http.get<PokemonList>(resPokemons.url).pipe(
-            map(res => res)
-          ).subscribe( res => resPokemons.status = res)
-        })
+          this.http
+            .get<PokemonList>(resPokemons.url)
+            .pipe(map((res) => res))
+            .subscribe((res) => (resPokemons.status = res));
+        });
       })
-
     );
   }
 
-gePokemonListByTypes(): Observable<PokemonList> {
-  const url = `${this.apiType}`;
-  return this.http.get<PokemonList>(url).pipe(
-    tap(res => res),
-    tap( res => {
-      res.results.map((resPokemons: any) => {
-        this.http.get<PokemonList>(resPokemons.url).pipe(
-          map(res => res)
-        ).subscribe( res => resPokemons.status = res)
+
+
+
+  getPokemonListByTypes(): Observable<any> {
+    const url = `${this.apiType}`;
+    return this.http.get<any>(url).pipe(
+      tap((res) => res),
+      tap((res) => {
+        res.results.map((resPokemons: any) => {
+          this.getPokemonDetails(resPokemons.url).subscribe((details) => {
+            resPokemons.status = details;
+          });
+        });
       })
-    })
+    );
+  }
 
-  )
-}
-
-
+  getPokemonDetails(url: string): Observable<any> {
+    return this.http.get<any>(url);
+  }
 
   convertPokeApiDetailToPokemon(pokeDetail: any): Observable<Pokemon> {
     return of(this.convertToPokemon(pokeDetail));
@@ -93,14 +116,20 @@ gePokemonListByTypes(): Observable<PokemonList> {
       base_experience: pokeDetail.base_experience,
       height: pokeDetail.height,
       order: pokeDetail.order,
-      types: pokeDetail.types ? pokeDetail.types.map((typeSlot: any) => typeSlot.type.name) : [],
+      types: pokeDetail.types
+        ? pokeDetail.types.map((typeSlot: any) => typeSlot.type.name)
+        : [],
       type: pokeDetail.types ? pokeDetail.types[0].type.name : '',
-      photo: pokeDetail.sprites ? pokeDetail.sprites.other.dream_world.front_default : '',
-      abilities: pokeDetail.abilities ? pokeDetail.abilities.map((abilitySlot: any) => ({
-        ability: abilitySlot.ability,
-        is_hidden: abilitySlot.is_hidden,
-        slot: abilitySlot.slot
-      })) : [],
+      photo: pokeDetail.sprites
+        ? pokeDetail.sprites.other.dream_world.front_default
+        : '',
+      abilities: pokeDetail.abilities
+        ? pokeDetail.abilities.map((abilitySlot: any) => ({
+            ability: abilitySlot.ability,
+            is_hidden: abilitySlot.is_hidden,
+            slot: abilitySlot.slot,
+          }))
+        : [],
     };
 
     return pokemon;
@@ -108,15 +137,6 @@ gePokemonListByTypes(): Observable<PokemonList> {
 
 
 
-
-
-  getPokemonDetails(pokemonId: number): Observable<Pokemon> {
-    const url = `${this.apiUrl}/${pokemonId}`;
-    return this.http.get(url).pipe(
-      map((response: any) => this.convertToPokemon(response))
-    );
-
-  }
 
 
 }
