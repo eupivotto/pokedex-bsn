@@ -8,45 +8,16 @@ interface Pokemon {
   url: string;
 }
 
-import {
-  Component,
-  Input,
-  OnInit,
-  OnChanges,
-  SimpleChanges,
-  Output,
-  EventEmitter,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { PokemonService } from 'src/app/core/services/pokemon.service';
 import {
-  IonItem,
-  IonLabel,
-  IonList,
-  IonContent,
-  IonRow,
-  IonCol,
-  IonGrid,
-  IonButton,
-  IonIcon,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonButtons,
-  IonCard,
-  IonCardTitle,
-  IonCardSubtitle,
-  IonCardHeader,
-  IonCardContent,
-  IonInfiniteScroll,
-  IonInfiniteScrollContent,
-
-
-} from '@ionic/angular/standalone';
-import { ModalController } from '@ionic/angular';
+  ModalController,
+  IonicModule,
+  InfiniteScrollCustomEvent,
+} from '@ionic/angular';
 import { TypeColorsService } from 'src/app/core/services/type-colors.service';
 import { ModalDetailsComponent } from '../../../pokemon-details/components/modal-details/modal-details.component';
-import { InfiniteScrollCustomEvent } from '@ionic/angular';
 import { FavoriteService } from 'src/app/core/services/favorite.service';
 
 @Component({
@@ -54,32 +25,7 @@ import { FavoriteService } from 'src/app/core/services/favorite.service';
   templateUrl: './pokemons-by-types.component.html',
   standalone: true,
   styleUrls: ['./pokemons-by-types.component.scss'],
-  imports: [
-    IonInfiniteScrollContent,
-    IonInfiniteScroll,
-    IonCardContent,
-    IonCardHeader,
-    IonCardSubtitle,
-    IonCardTitle,
-    IonCard,
-    IonButtons,
-    IonToolbar,
-    IonTitle,
-    IonHeader,
-    IonIcon,
-    IonButton,
-    IonGrid,
-    IonCol,
-    IonRow,
-    IonContent,
-    IonList,
-    IonLabel,
-    IonItem,
-    CommonModule,
-    NgFor,
-
-
-  ],
+  imports: [IonicModule, CommonModule, NgFor],
 })
 export class PokemonsByTypesComponent implements OnInit {
   isModalOpen = false;
@@ -87,31 +33,36 @@ export class PokemonsByTypesComponent implements OnInit {
   @Input() pokemon: any;
   @Input() getListPokemons: any;
 
-
-
-
   constructor(
     private pokemonService: PokemonService,
     private ModalController: ModalController,
     public typeColorsService: TypeColorsService,
-    public favoriteService: FavoriteService,
-
+    public favoriteService: FavoriteService
   ) {}
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {
     console.log('Tipo selecionado POKE  MODAL:', this.type);
-    console.log('Tipo selecionado pokedetail', this.pokemon);
     this.getListTypesPokemons();
   }
 
   //get data byt types pokemons
   getListTypesPokemons() {
     this.pokemonService.getPokemonList().subscribe((res) => {
-      this.getListPokemons = res.results; // add set for resolve back search results
+      this.getListPokemons = res.results.map((type: any) => {
+        const id = this.getIdFromUrl(type.url);
+        const Height = type.Height;
+        const base = type.base_experience;
+        return { id, name: type.name, Height, base};
+      });
+      console.log('lista da página categoría', this.getListPokemons);
     });
   }
 
+  getIdFromUrl(url: string): number {
+    const urlParts = url.split('/');
+    return parseInt(urlParts[urlParts.length - 2]);
+  }
 
   //function Open Modal and send data on modal component
   async openModal(pokemon: any) {
@@ -149,7 +100,6 @@ export class PokemonsByTypesComponent implements OnInit {
       this.type.push(`Item ${count + i}`);
     }
   }
-
 
   // Infine scroll function implements
   onIonInfinite(ev: any) {

@@ -17,22 +17,11 @@ export class PokemonService {
 
   constructor(private http: HttpClient) {}
 
+
+
+
+
   //listing pokemons by type using name and url
-  getPokemonByType(
-    typeName: string
-  ): Observable<{ name: string; url: string }[]> {
-    const url = `${this.apiType}${typeName}`;
-
-    return this.http.get<IPokemonTypeResponse>(url).pipe(
-      map((response) =>
-        response.pokemon.map((pokemon) => ({
-          name: pokemon.pokemon.name,
-          url: pokemon.pokemon.url,
-        }))
-      )
-    );
-  }
-
   getPokemonList(): Observable<IPokemonList> {
     const url = `${this.apiUrl}/pokemon/?limit=25`;
     return this.http.get<IPokemonList>(url).pipe(
@@ -49,7 +38,7 @@ export class PokemonService {
   }
 
   getPokemonListByTypes(): Observable<IPokemonList> {
-    const url = `${this.apiType}`;
+    const url = `${this.apiType}?limit=19`;
     return this.http.get<IPokemonList>(url).pipe(
       tap((res) => res),
       tap((res) => {
@@ -65,4 +54,19 @@ export class PokemonService {
   getPokemonDetails(url: string): Observable<any> {
     return this.http.get<any>(url);
   }
+
+
+
+  //listing pokemons by type using name and url
+  getPokemonByType( typeName: string): Observable<{ name: string; url: string }[]> {
+    const url = `${this.apiType}${typeName}`;
+    return this.http.get<IPokemonTypeResponse>(url).pipe(
+     map((response) =>
+       response.pokemon.map((pokemon) => ({
+         name: pokemon.pokemon.name,
+         url: pokemon.pokemon.url,
+       }))
+     )
+   );
+ }
 }

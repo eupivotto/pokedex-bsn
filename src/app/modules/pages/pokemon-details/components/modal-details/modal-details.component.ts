@@ -22,7 +22,7 @@ import {
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { Pokemon } from 'src/app/models/pokemon.models';
+import { IPokemon } from 'src/app/models/pokemon.models';
 import { TypeColorsService } from 'src/app/core/services/type-colors.service';
 
 @Component({
@@ -52,7 +52,7 @@ import { TypeColorsService } from 'src/app/core/services/type-colors.service';
 })
 export class ModalDetailsComponent implements OnInit {
   isModalOpen = false;
-  @Input() pokemon: any;
+  @Input() pokemon: IPokemon | any;
   @Input() statusData: any;
 
   constructor(private modalController: ModalController,

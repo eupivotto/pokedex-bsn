@@ -28,7 +28,7 @@ import { ModalController } from '@ionic/angular';
 import { PokemonService } from 'src/app/core/services/pokemon.service';
 
 import { CommonModule } from '@angular/common';
-import { Pokemon, IPokemonList } from '../../../models/pokemon.models';
+import { IPokemon, IPokemonList } from '../../../models/pokemon.models';
 import { RouterLink } from '@angular/router';
 import { SearchPokemonComponent } from '../search-pokemon/search-pokemon.component';
 
@@ -63,7 +63,7 @@ export class PokemonCardComponent implements OnInit {
   @Input() getListPokemons : any;
   pokemonList: IPokemonList | undefined;
   @Input() modal: IonModal | any;
-  @Input() pokemon: any;
+  @Input() pokemon: IPokemon | any;
   @Output() pokemonFavorited = new EventEmitter<any>();
   favorited: boolean = false;
 

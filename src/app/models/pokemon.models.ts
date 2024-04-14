@@ -29,7 +29,7 @@ export interface IPokemonTypeResponse {
     };
   }[];
 }
-export interface Pokemon {
+export interface IPokemon {
   id: number;
   name: string;
   base_experience: number;

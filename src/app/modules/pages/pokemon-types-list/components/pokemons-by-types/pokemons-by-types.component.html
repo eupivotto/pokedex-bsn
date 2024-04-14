@@ -16,13 +16,14 @@
     <ion-item *ngFor="let item of type?.status?.pokemon; let index">
       <ion-label>
         <h1
-          [ngStyle]="{ color: getTypeColor(type?.name) }"
+          [ngStyle]="{ background: getTypeColor(type?.name) }"
           class="title-poke-name"
         >
           {{ item?.pokemon?.name }}
         </h1>
       </ion-label>
-      <ion-label>{{ item?.pokemon?.id }}</ion-label>
+      <ion-label class="id-label">Id: {{ getIdFromUrl(item?.pokemon?.url) }}</ion-label>
+      <ion-label class="base-label">BaseExp: {{ getIdFromUrl(item?.pokemon?.url) }}</ion-label>
     </ion-item>
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">

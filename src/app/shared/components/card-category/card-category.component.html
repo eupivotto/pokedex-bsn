@@ -1,26 +1,41 @@
 <div class="card-category-container">
   <h1>Tipos de Pokémon</h1>
-
-  <div *ngFor="let type of getListTypes">
-    <ion-card [ngStyle]="{ background: getTypeColorsCategory(type?.name) }">
-      <ion-card-header>
-        <ion-card-content>
-          <ion-row class="category-content">
-            <ion-col size="4" class="card-title" size="6">
-              <ion-card-title >{{type?.name}}</ion-card-title>
-            </ion-col>
-            <ion-col size="4" class="image-container">
-              <img class="pokebol-img-category" src="../../../../assets/images/pokeball-type.png" alt="imagem pokeball" />
-            </ion-col>
-            <ion-col size="4">
-              <ion-button (click)="openModal(type)" fill="clear">
-                <ion-icon slot="icon-only" class="icon-details" name="add-circle"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-card-content>
-      </ion-card-header>
-    </ion-card>
-  </div>
-
-  <div>
+  <ion-content>
+    <div *ngFor="let type of getListTypes">
+      <ion-card
+        class="shadow-utils"
+        [ngStyle]="{ background: getTypeColorsCategory(type?.name) }"
+      >
+        <ion-card-header >
+          <ion-card-content>
+            <ion-row class="category-content">
+              <ion-col size="4" class="card-title" size="6">
+                <ion-card-title>{{ type?.name }}</ion-card-title>
+              </ion-col>
+              <ion-col size="4" class="image-container">
+                <img
+                  class="pokebol-img-category"
+                  src="../../../../assets/images/pokeball-type.png"
+                  alt="imagem pokeball"
+                />
+              </ion-col>
+              <ion-col size="4">
+                <ion-button style=" margin-top: -10px;"
+                  class="send-button"
+                  (click)="openModal(type)"
+                  fill="clear"
+                >
+                  <ion-icon
+                    slot="icon-only"
+                    class="icon-details"
+                    name="add-circle"
+                  ></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card-header>
+      </ion-card>
+    </div>
+  </ion-content>
+</div>

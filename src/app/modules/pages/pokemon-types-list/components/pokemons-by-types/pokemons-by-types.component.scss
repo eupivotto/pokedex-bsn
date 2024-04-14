@@ -2,23 +2,39 @@
   background: #dddddd;
 }
 
+
+
 ion-title {
-  color:var(--ion-color-medium-shade);
+  color: var(--ion-color-medium-shade);
 }
 
 ion-card-subtitle {
   color: #000;
 }
 
-.favorite-button {
-  background:var(--color-blue-main)
+ion-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+ion-label {
+  text-align: center;
+  color: var(--color-blue-main);
+  font-weight: bold;
+
+
+}
+
+.favorite-button {
+  background: var(--color-blue-main);
+}
 
 .title-poke-name {
+  text-align: center;
   font-weight: bold;
   font-size: 20px;
-
-
+  color: #fff;
+  border-radius: 5px;
+  opacity: 0.5;
 }
-
