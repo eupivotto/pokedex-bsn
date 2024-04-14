@@ -1,14 +1,15 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { addIcons } from 'ionicons';
 import { optionsOutline } from 'ionicons/icons';
-import { IonHeader, IonToolbar, IonImg, IonButtons, IonButton, IonIcon, IonCardSubtitle, IonSearchbar, IonContent } from "@ionic/angular/standalone";
+import { IonicModule} from '@ionic/angular';
+
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   standalone: true,
   styleUrls: ['./header.component.scss'],
-  imports: [IonContent, IonSearchbar, IonCardSubtitle, IonIcon, IonButton, IonButtons, IonToolbar, IonHeader, IonImg]
+  imports: [ IonicModule]
 })
 export class HeaderComponent  implements OnInit {
 
@@ -24,7 +25,7 @@ export class HeaderComponent  implements OnInit {
 
   }
 
-  
+
 
 
 }

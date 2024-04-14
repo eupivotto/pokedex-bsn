@@ -32,7 +32,7 @@ export class PokemonCardComponent implements OnInit {
 
   private setListPokemons: any;
   @Input() getListPokemons : any;
-  pokemonList: IPokemonList | undefined;
+  
   @Input() modal: any;
   @Input() pokemon: IPokemon | any;
   @Output() pokemonFavorited = new EventEmitter<any>();
@@ -51,8 +51,6 @@ export class PokemonCardComponent implements OnInit {
   ngOnInit(): void {
     this.getAllPokemons();
     this.pokemonService.getPokemonByType(this.pokemon);
-    console.log(this.pokemon)
-
 
   }
 

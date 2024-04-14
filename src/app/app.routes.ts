@@ -19,13 +19,10 @@ export const routes: Routes = [
       { path: 'category', component: CategoryPage },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'list-types', component: PokemonTypesListPage },
-      { path: 'pokemon-details/:name', component: ModalDetailsComponent}
+
     ]
   },
   { path: '**', redirectTo: '' },
-  {
-    path: 'pokemon-types-list',
-    loadComponent: () => import('./modules/pages/pokemon-types-list/pokemon-types-list.page').then( m => m.PokemonTypesListPage)
-  }
+
 
 ];

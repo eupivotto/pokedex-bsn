@@ -1,22 +1,32 @@
-
 <div class="card-favorite-container">
+  <div class="text-message-favorited" *ngIf="favoritePokemons.length === 0">
+    <h1>Nenhum Pokémon favoritado!</h1>
+  </div>
+
+  <ion-list *ngIf="favoritePokemons.length > 0">
+    <!-- Your list of favorite Pokémons -->
+  </ion-list>
   <ion-card *ngFor="let pokemon of favoritePokemons">
     <ion-grid>
       <ion-row>
         <ion-col size="5" class="container-img-favorite">
-          <img [src]="pokemon?.status?.sprites?.other?.dream_world?.front_default" alt="" />
+          <img
+            [src]="pokemon?.status?.sprites?.other?.dream_world?.front_default"
+            alt=""
+          />
         </ion-col>
 
         <ion-col size="4">
-          <div class="text-card-favorites" >
+          <div class="text-card-favorites">
             <h1 class="grass">
-                {{ pokemon?.name }}
+              {{ pokemon?.name }}
             </h1>
             <ion-button
               fill="clear"
               size="small"
               color="medium"
               class="button-details"
+              (click)="openModal(pokemon)"
             >
               <ion-icon class="icon-details" name="add-circle"></ion-icon>
               Ver detalhes

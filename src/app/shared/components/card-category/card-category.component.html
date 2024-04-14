@@ -6,7 +6,7 @@
         class="shadow-utils"
         [ngStyle]="{ background: getTypeColorsCategory(type?.name) }"
       >
-        <ion-card-header >
+        <ion-card-header>
           <ion-card-content>
             <ion-row class="category-content">
               <ion-col size="4" class="card-title" size="6">
@@ -20,7 +20,8 @@
                 />
               </ion-col>
               <ion-col size="4">
-                <ion-button style=" margin-top: -10px;"
+                <ion-button
+                  style="margin-top: -10px"
                   class="send-button"
                   (click)="openModal(type)"
                   fill="clear"

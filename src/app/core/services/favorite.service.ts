@@ -10,6 +10,7 @@ export class FavoriteService {
     this.initializeFavorites();
    }
 
+   //init favorite pokemon function on locarl storage
    private initializeFavorites() {
     const storedFavorites = localStorage.getItem('favoritePokemons');
     if (storedFavorites) {
@@ -24,7 +25,7 @@ export class FavoriteService {
     this.saveFavorites();
   }
 
-  // Remova a Pokemon from the favorites
+  // Remove a Pokemon from the favorites
   removePokemon(pokemon: any) {
     if (pokemon) {
       const index = this.favoritePokemons.findIndex(p => p.id === pokemon.id);

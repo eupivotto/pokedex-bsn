@@ -111,14 +111,12 @@ ion-content {
 
   ion-button {
     --padding-top: 0;
-  --padding-bottom: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-  text-transform: none;
+    --padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-transform: none;
   }
 }
-
-
 
 .icon-details {
   color: var(--collor-blue-main);
@@ -142,8 +140,4 @@ ion-content {
     font-size: 8px;
     text-transform: uppercase;
   }
-
 }
-
-
-

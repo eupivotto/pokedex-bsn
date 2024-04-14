@@ -17,10 +17,6 @@ export class PokemonService {
 
   constructor(private http: HttpClient) {}
 
-
-
-
-
   //listing pokemons by type using name and url
   getPokemonList(): Observable<IPokemonList> {
     const url = `${this.apiUrl}/pokemon/?limit=25`;
@@ -37,6 +33,7 @@ export class PokemonService {
     );
   }
 
+  //function usage of more types
   getPokemonListByTypes(): Observable<IPokemonList> {
     const url = `${this.apiType}?limit=19`;
     return this.http.get<IPokemonList>(url).pipe(
@@ -55,18 +52,18 @@ export class PokemonService {
     return this.http.get<any>(url);
   }
 
-
-
   //listing pokemons by type using name and url
-  getPokemonByType( typeName: string): Observable<{ name: string; url: string }[]> {
+  getPokemonByType(
+    typeName: string
+  ): Observable<{ name: string; url: string }[]> {
     const url = `${this.apiType}${typeName}`;
     return this.http.get<IPokemonTypeResponse>(url).pipe(
-     map((response) =>
-       response.pokemon.map((pokemon) => ({
-         name: pokemon.pokemon.name,
-         url: pokemon.pokemon.url,
-       }))
-     )
-   );
- }
+      map((response) =>
+        response.pokemon.map((pokemon) => ({
+          name: pokemon.pokemon.name,
+          url: pokemon.pokemon.url,
+        }))
+      )
+    );
+  }
 }

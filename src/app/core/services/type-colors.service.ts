@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TypeColorsService {
-
-  private typeToColor: { [type: string ]: string} =  {
+  private typeToColor: { [type: string]: string } = {
     normal: 'var(--gradient-normal)',
     grass: 'var(--gradient-grass)',
     fire: 'var(--gradient-fire)',
@@ -23,34 +22,25 @@ export class TypeColorsService {
     bug: 'var(--gradient-bug)',
     rock: 'var(--gradient-rock)',
     steel: 'var(--gradient-steel)',
-    ghost: 'var(--gradient-ghost)'
-    
-
-
+    ghost: 'var(--gradient-ghost)',
   };
 
-  constructor() { }
+  constructor() {}
 
-   getColorByType(type: string): string {
+  //get color by types on texts
+  getColorByType(type: string): string {
     return this.typeToColor[type];
-   }
-
-  //  getTypeColor(type: string): string {
-  //   return this.getColorByType(type);
-
-  // }
-
-  getPokemonCardBackgroundColor(pokemon: any): string {
-    return pokemon.status?.types && pokemon.status?.types[0]?.type ?
-    this.getColorByType(pokemon.status?.types[0].type.name) : '';
-
   }
 
+  //get color by types to background
+  getPokemonCardBackgroundColor(pokemon: any): string {
+    return pokemon.status?.types && pokemon.status?.types[0]?.type
+      ? this.getColorByType(pokemon.status?.types[0].type.name)
+      : '';
+  }
+
+  //get color by types to background others
   getBackgroundColorType(type: string): string {
     return this.getColorByType(type) || '';
   }
 }
-
-
-
-
