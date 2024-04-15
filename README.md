@@ -33,7 +33,13 @@ de navegação,  e o tema pokedex.
     TypeScript
     HTML/CSS
 
-![Vídeo demonstração](/src/assets/images/gif-pokedex.gif)
+    <video width="320" height="240" controls>
+  <source src="./src/assets/images/gif-pokedex-ok.gif" type="video/mp4">
+  Seu navegador não suporta o elemento <code>video</code>.
+</video>
+
+
+<!-- ![Vídeo demonstração](/src/assets/images/gif-pokedex.gif) -->
 
 ## Como Instalar e Executar
 
