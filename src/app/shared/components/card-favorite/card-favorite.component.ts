@@ -3,10 +3,9 @@ import { addCircle, heart, trash } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { CommonModule } from '@angular/common';
 import { ModalController, IonicModule } from '@ionic/angular';
-
 import { IPokemon } from 'src/app/shared/models/pokemon.models';
 import { ModalDetailsComponent } from 'src/app/modules/pokemon-details/components/modal-details/modal-details.component';
-import { FavoriteService } from '../../services/favorite.service';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-card-favorite',
@@ -21,12 +20,11 @@ export class CardFavoriteComponent implements OnInit {
   @Input() pokemon: IPokemon | any;
 
   constructor(
-    public favoriteService: FavoriteService,
+    public utils: UtilsService,
     private modalController: ModalController
   ) {
     addIcons({ heart, addCircle, trash });
   }
-
 
   ngOnInit() {
     this.getFromFavorites();
@@ -43,12 +41,12 @@ export class CardFavoriteComponent implements OnInit {
 
   //get from favotires
   getFromFavorites() {
-    this.favoritePokemons = this.favoriteService.getFavorites();
+    this.favoritePokemons = this.utils.favoriteService.getFavorites();
   }
 
   //remove favorite pokemon
   removeFromFavorites(pokemon: any) {
-    this.favoriteService.removePokemon(pokemon);
+    this.utils.favoriteService.removePokemon(pokemon);
   }
 
   ///send data pokemon and open modal

@@ -9,14 +9,11 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { addCircle } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
-
 import { CommonModule } from '@angular/common';
-
 import { ModalController, IonicModule } from '@ionic/angular';
 import { IPokemonList, IPokemon } from '../../models/pokemon.models';
 import { PokemonsByTypesComponent } from 'src/app/modules/pokemon-type-list/components/pokemons-by-types/pokemons-by-types.component';
-import { PokemonService } from '../../services/pokemon.service';
-import { TypeColorsService } from '../../services/type-colors.service';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-card-category',
@@ -38,15 +35,14 @@ export class CardCategoryComponent implements OnInit, OnDestroy {
   subscription: any;
 
   constructor(
-    private pokemonService: PokemonService,
-    public typeColorsService: TypeColorsService,
+    public utils: UtilsService,
     private modalController: ModalController,
     private router: Router
   ) {
     addIcons({ addCircle });
   }
 
-  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
+
   ngOnInit(): void {
     this.getAllTypes();
   }
@@ -68,9 +64,9 @@ export class CardCategoryComponent implements OnInit, OnDestroy {
 
   // get all types data
   getAllTypes(): void {
-    this.pokemonService.getPokemonListByTypes().subscribe((res: any) => {
+    this.utils.pokemonService.getPokemonListByTypes().subscribe((res: any) => {
       this.getListTypes = res.results.map((type: any) => type);
-      console.log('lista da pag catedory', this.getListTypes);
+
     });
   }
 
@@ -81,6 +77,6 @@ export class CardCategoryComponent implements OnInit, OnDestroy {
 
   //function on get color category
   getTypeColorsCategory(type: string): string {
-    return this.typeColorsService.getBackgroundColorType(type);
+    return this.utils.typeColorsService.getBackgroundColorType(type);
   }
 }

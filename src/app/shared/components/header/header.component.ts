@@ -3,7 +3,6 @@ import { addIcons } from 'ionicons';
 import { optionsOutline } from 'ionicons/icons';
 import { IonicModule} from '@ionic/angular';
 
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -11,20 +10,12 @@ import { IonicModule} from '@ionic/angular';
   styleUrls: ['./header.component.scss'],
   imports: [ IonicModule]
 })
-export class HeaderComponent  implements OnInit {
-
-
+export class HeaderComponent  {
 
 
   constructor() {
     addIcons({ optionsOutline });
   }
-
-  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-  ngOnInit() {
-
-  }
-
 
 
 

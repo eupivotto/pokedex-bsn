@@ -11,16 +11,12 @@ import {
 import { addCircle, heart, heartOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { ModalController, IonicModule, ToastController } from '@ionic/angular';
-
 import { CommonModule } from '@angular/common';
-import { IPokemon, IPokemonList } from '../../models/pokemon.models';
+import { IPokemon } from '../../models/pokemon.models';
 import { RouterLink } from '@angular/router';
 import { SearchPokemonComponent } from '../search-pokemon/search-pokemon.component';
-
 import { ModalDetailsComponent } from 'src/app/modules/pokemon-details/components/modal-details/modal-details.component';
-import { FavoriteService } from '../../services/favorite.service';
-import { TypeColorsService } from '../../services/type-colors.service';
-import { PokemonService } from '../../services/pokemon.service';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -40,17 +36,16 @@ export class PokemonCardComponent implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    public pokemonService: PokemonService,
-    public typeColorsService: TypeColorsService,
-    public favoriteService: FavoriteService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    public utils: UtilsService
+
   ) {
     addIcons({ addCircle, heart, heartOutline });
   }
 
   ngOnInit(): void {
     this.getAllPokemons();
-    this.pokemonService.getPokemonByType(this.pokemon);
+    this.utils.pokemonService.getPokemonByType(this.pokemon);
   }
 
   // function open and close modal
@@ -69,7 +64,7 @@ export class PokemonCardComponent implements OnInit {
 
   //get all pokemon list
   getAllPokemons() {
-    this.pokemonService.getPokemonList().subscribe((res: any) => {
+    this.utils.pokemonService.getPokemonList().subscribe((res: any) => {
       this.setListPokemons = res.results; // add set to resolve back search results
       this.getListPokemons = this.setListPokemons;
       console.log(this.setListPokemons);
@@ -78,12 +73,12 @@ export class PokemonCardComponent implements OnInit {
 
   //change type color pokemon style
   getTypeColor(type: string): string {
-    return this.typeColorsService.getColorByType(type);
+    return this.utils.typeColorsService.getColorByType(type);
   }
 
   //Change type color background style
   getPokemonCardBackgroundColor(pokemon: any): string {
-    return this.typeColorsService.getPokemonCardBackgroundColor(pokemon);
+    return this.utils.typeColorsService.getPokemonCardBackgroundColor(pokemon);
   }
 
   //get pokemon search function
@@ -97,7 +92,7 @@ export class PokemonCardComponent implements OnInit {
 
   //favorite pokemon function
   favoritePokemon(pokemon: any) {
-    this.favoriteService.addPokemon(pokemon);
+    this.utils.favoriteService.addPokemon(pokemon);
     this.pokemonFavorited.emit(pokemon);
   }
 

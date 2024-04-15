@@ -8,13 +8,10 @@ import { IonSearchbar, IonCardSubtitle } from '@ionic/angular/standalone';
   styleUrls: ['./search-pokemon.component.scss'],
   imports: [IonSearchbar, IonCardSubtitle],
 })
-export class SearchPokemonComponent implements OnInit {
+export class SearchPokemonComponent {
   @Output() public emitsearch: EventEmitter<string> = new EventEmitter();
 
   constructor() {}
-
-  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-  ngOnInit() {}
 
   //functionn to serach usgin a event
   public search(value: any) {
