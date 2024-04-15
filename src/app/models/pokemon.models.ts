@@ -14,11 +14,6 @@ export interface PokemonListItem {
 
 
 }
-export interface PokemonResponse {
-  name: string;
-  url: string;
-}
-
 
 export interface IPokemonTypeResponse {
   // ... outras propriedades da resposta
@@ -49,37 +44,3 @@ export interface IPokemon {
 
 
 
-interface PokemonDetail {
-  id: number;
-  name: string;
-  base_experience: number;
-  height: number;
-  order: number;
-  types: {
-    slot: number;
-    type: {
-      name: string;
-    };
-  }[];
-  sprites: {
-    other: {
-      dream_world: {
-        front_default: string;
-      };
-    };
-  };
-  abilities: {
-    ability: {
-      name: string;
-      url: string;
-    };
-    is_hidden: boolean;
-    slot: number;
-  }[];
-}
-
-
-interface IpokemonBaseStats {
-  name: string;
-  base_stats: number;
-}

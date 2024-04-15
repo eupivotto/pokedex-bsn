@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, map, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import {
   IPokemonList,
@@ -29,6 +29,12 @@ export class PokemonService {
             .pipe(map((res) => res))
             .subscribe((res) => (resPokemons.status = res));
         });
+      }),
+       catchError((error) => {
+        console.error(`Erro ao obter lista de Pokemons: ${error}`);
+        return throwError(
+          'Erro ao obter lista de Pokemons. Por favor, tente novamente.'
+        );
       })
     );
   }
@@ -44,7 +50,14 @@ export class PokemonService {
             resPokemons.status = details;
           });
         });
+      }),
+      catchError((error) => {
+        console.error(`Erro ao obter lista de Pokemons: ${error}`);
+        return throwError(
+          'Erro ao obter lista de Pokemons. Por favor, tente novamente.'
+        );
       })
+
     );
   }
 
@@ -65,5 +78,23 @@ export class PokemonService {
         }))
       )
     );
+    catchError(this.handleError)
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      //error side of client.
+      console.error('Ocorreu um erro:', error.error.message);
+    } else {
+      // erro result back end.
+      // body request error,
+      console.error(
+        `Código de erro retornado pelo servidor ${error.status}, ` +
+        `mensagem de erro: ${error.error}`
+      );
+    }
+    // return a obervable
+    return throwError('Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde.');
   }
 }
+
