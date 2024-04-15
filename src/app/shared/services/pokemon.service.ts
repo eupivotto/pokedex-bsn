@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import {
   IPokemonList,
   IPokemonTypeResponse,
-} from '../../models/pokemon.models';
+} from '../../shared/models/pokemon.models';
 
 @Injectable({
   providedIn: 'root',

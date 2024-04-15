@@ -11,13 +11,16 @@ interface Pokemon {
 import { Component, Input, OnInit } from '@angular/core';
 import { closeCircle } from 'ionicons/icons';
 import { CommonModule, NgFor } from '@angular/common';
-import { PokemonService } from 'src/app/core/services/pokemon.service';
+
 import { ModalController, IonicModule, InfiniteScrollCustomEvent,
 } from '@ionic/angular';
-import { TypeColorsService } from 'src/app/core/services/type-colors.service';
+
 import { ModalDetailsComponent } from '../../../pokemon-details/components/modal-details/modal-details.component';
-import { FavoriteService } from 'src/app/core/services/favorite.service';
+
 import { addIcons } from 'ionicons';
+import { PokemonService } from 'src/app/shared/services/pokemon.service';
+import { TypeColorsService } from 'src/app/shared/services/type-colors.service';
+import { FavoriteService } from 'src/app/shared/services/favorite.service';
 
 @Component({
   selector: 'app-pokemons-by-types',
@@ -49,7 +52,7 @@ export class PokemonsByTypesComponent implements OnInit {
 
   //get data byt types pokemons
   getListTypesPokemons() {
-    this.pokemonService.getPokemonList().subscribe((res) => {
+    this.pokemonService.getPokemonList().subscribe((res: any) => {
       this.getListPokemons = res.results.map((type: any) => {
         const id = this.getIdFromUrl(type.url);
         const Height = type.Height;

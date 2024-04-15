@@ -10,29 +10,29 @@ import {
 
 import { addCircle, heart, heartOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
-import { ModalDetailsComponent } from 'src/app/modules/pages/pokemon-details/components/modal-details/modal-details.component';
 import { ModalController, IonicModule, ToastController } from '@ionic/angular';
-import { PokemonService } from 'src/app/core/services/pokemon.service';
+
 import { CommonModule } from '@angular/common';
-import { IPokemon, IPokemonList } from '../../../models/pokemon.models';
+import { IPokemon, IPokemonList } from '../../models/pokemon.models';
 import { RouterLink } from '@angular/router';
 import { SearchPokemonComponent } from '../search-pokemon/search-pokemon.component';
-import { TypeColorsService } from 'src/app/core/services/type-colors.service';
-import { FavoriteService } from 'src/app/core/services/favorite.service';
 
+import { ModalDetailsComponent } from 'src/app/modules/pokemon-details/components/modal-details/modal-details.component';
+import { FavoriteService } from '../../services/favorite.service';
+import { TypeColorsService } from '../../services/type-colors.service';
+import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
   selector: 'app-pokemon-card',
   templateUrl: './pokemon-card.component.html',
   standalone: true,
   styleUrls: ['./pokemon-card.component.scss'],
-  imports: [ IonicModule, CommonModule, RouterLink, SearchPokemonComponent ],
+  imports: [IonicModule, CommonModule, RouterLink, SearchPokemonComponent],
 })
 export class PokemonCardComponent implements OnInit {
-
   private setListPokemons: any;
-  @Input() getListPokemons : any;
-  
+  @Input() getListPokemons: any;
+
   @Input() modal: any;
   @Input() pokemon: IPokemon | any;
   @Output() pokemonFavorited = new EventEmitter<any>();
@@ -40,7 +40,7 @@ export class PokemonCardComponent implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    private pokemonService: PokemonService,
+    public pokemonService: PokemonService,
     public typeColorsService: TypeColorsService,
     public favoriteService: FavoriteService,
     private toastController: ToastController
@@ -51,10 +51,7 @@ export class PokemonCardComponent implements OnInit {
   ngOnInit(): void {
     this.getAllPokemons();
     this.pokemonService.getPokemonByType(this.pokemon);
-
   }
-
-
 
   // function open and close modal
   async openModal(pokemon: any) {
@@ -63,18 +60,16 @@ export class PokemonCardComponent implements OnInit {
       componentProps: { pokemon },
     });
     await modal.present();
-
   }
 
   //Close modal
   closeModal() {
     this.modalController.dismiss();
-
   }
 
   //get all pokemon list
   getAllPokemons() {
-    this.pokemonService.getPokemonList().subscribe((res) => {
+    this.pokemonService.getPokemonList().subscribe((res: any) => {
       this.setListPokemons = res.results; // add set to resolve back search results
       this.getListPokemons = this.setListPokemons;
       console.log(this.setListPokemons);
@@ -93,7 +88,7 @@ export class PokemonCardComponent implements OnInit {
 
   //get pokemon search function
   getSearch(value: any) {
-      const filter = this.setListPokemons.filter((res: any) => {
+    const filter = this.setListPokemons.filter((res: any) => {
       return !res.name.indexOf(value.toLowerCase());
     });
 
@@ -117,11 +112,9 @@ export class PokemonCardComponent implements OnInit {
       message: 'Pokemon Favoritado!',
       duration: 1500,
       position: position,
-      cssClass: 'custom-toast'
+      cssClass: 'custom-toast',
     });
 
     await toast.present();
   }
 }
-
-

@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HeaderComponent } from '../../../shared/components/header/header.component';
+import { HeaderComponent } from '../../../../shared/components/header/header.component';
 import { PokemonCardComponent } from 'src/app/shared/components/pokemon-card/pokemon-card.component';
-import { ModalDetailsComponent } from '../pokemon-details/components/modal-details/modal-details.component';
-import { SearchPokemonComponent } from "../../../shared/components/search-pokemon/search-pokemon.component";
+import { SearchPokemonComponent } from "../../../../shared/components/search-pokemon/search-pokemon.component";
+import { ModalDetailsComponent } from 'src/app/modules/pokemon-details/components/modal-details/modal-details.component';
 
 
 @Component({

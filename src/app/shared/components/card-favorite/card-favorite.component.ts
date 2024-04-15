@@ -3,9 +3,11 @@ import { addCircle, heart, trash } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { CommonModule } from '@angular/common';
 import { ModalController, IonicModule } from '@ionic/angular';
-import { FavoriteService } from 'src/app/core/services/favorite.service';
-import { IPokemon } from 'src/app/models/pokemon.models';
-import { ModalDetailsComponent } from 'src/app/modules/pages/pokemon-details/components/modal-details/modal-details.component';
+
+import { IPokemon } from 'src/app/shared/models/pokemon.models';
+import { ModalDetailsComponent } from 'src/app/modules/pokemon-details/components/modal-details/modal-details.component';
+import { FavoriteService } from '../../services/favorite.service';
+
 @Component({
   selector: 'app-card-favorite',
   templateUrl: './card-favorite.component.html',
@@ -25,7 +27,7 @@ export class CardFavoriteComponent implements OnInit {
     addIcons({ heart, addCircle, trash });
   }
 
-  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
+
   ngOnInit() {
     this.getFromFavorites();
   }

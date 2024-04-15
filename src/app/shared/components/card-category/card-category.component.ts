@@ -9,12 +9,14 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { addCircle } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
-import { PokemonService } from 'src/app/core/services/pokemon.service';
+
 import { CommonModule } from '@angular/common';
-import { TypeColorsService } from 'src/app/core/services/type-colors.service';
+
 import { ModalController, IonicModule } from '@ionic/angular';
-import { IPokemonList, IPokemon } from '../../../models/pokemon.models';
-import { PokemonsByTypesComponent } from 'src/app/modules/pages/pokemon-types-list/components/pokemons-by-types/pokemons-by-types.component';
+import { IPokemonList, IPokemon } from '../../models/pokemon.models';
+import { PokemonsByTypesComponent } from 'src/app/modules/pokemon-type-list/components/pokemons-by-types/pokemons-by-types.component';
+import { PokemonService } from '../../services/pokemon.service';
+import { TypeColorsService } from '../../services/type-colors.service';
 
 @Component({
   selector: 'app-card-category',
@@ -66,7 +68,7 @@ export class CardCategoryComponent implements OnInit, OnDestroy {
 
   // get all types data
   getAllTypes(): void {
-    this.pokemonService.getPokemonListByTypes().subscribe((res) => {
+    this.pokemonService.getPokemonListByTypes().subscribe((res: any) => {
       this.getListTypes = res.results.map((type: any) => type);
       console.log('lista da pag catedory', this.getListTypes);
     });

@@ -22,8 +22,9 @@ import {
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { IPokemon } from 'src/app/models/pokemon.models';
-import { TypeColorsService } from 'src/app/core/services/type-colors.service';
+import { IPokemon } from 'src/app/shared/models/pokemon.models';
+import { TypeColorsService } from 'src/app/shared/services/type-colors.service';
+
 
 @Component({
   selector: 'app-modal-details',
