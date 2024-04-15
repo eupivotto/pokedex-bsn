@@ -32,11 +32,7 @@ de navegação,  e o tema pokedex.
     Ionic Framework
     TypeScript
     HTML/CSS
-
-    <video width="320" height="240" controls>
-  <source src="./src/assets/images/gif-pokedex-ok.gif" type="video/mp4">
-  Seu navegador não suporta o elemento <code>video</code>.
-</video>
+![Vide com detalhes da aplicação](/src/assets/images/gif-pokedex--comprime.gif)
 
 
 <!-- ![Vídeo demonstração](/src/assets/images/gif-pokedex.gif) -->
